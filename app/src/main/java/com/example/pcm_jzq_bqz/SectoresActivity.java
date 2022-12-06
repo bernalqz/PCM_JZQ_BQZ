@@ -18,24 +18,23 @@ import java.util.List;
 import io.realm.Realm;
 
 public class SectoresActivity extends AppCompatActivity {
-    //
+
     cSectorServicio mServicio = new cSectorServicio(Realm.getDefaultInstance());
     List<cSector> mListaSectores;
     ListView mlstListaSectores;
-    //
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sectores);
-        //
+
         mlstListaSectores = findViewById(R.id.lstListaSectores);
 
         fn_CargarListaSectores();
         fn_CargarSectorSeleccionado();
-        //
+
     }
-    //
 
     @Override
     public void onResume()

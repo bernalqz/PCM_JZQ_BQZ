@@ -7,11 +7,9 @@
     android:background="@drawable/mainactivity_background"
     tools:context=".SectoresActivity">
 
-//
-
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,99 +19,83 @@
         <ImageView
             android:id="@+id/imageView5"
             android:layout_width="match_parent"
-            android:layout_height="76dp"
-            android:paddingVertical="4dp"
+            android:layout_height="65dp"
             app:srcCompat="@drawable/mountain" />
 
         <TextView
             android:id="@+id/textView3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Sectores"
+            android:text="Sectores "
             android:textAlignment="center"
             android:textSize="20sp"
             android:textStyle="bold" />
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="470dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <ScrollView
+                <ListView
+                    android:id="@+id/lstListaSectores"
                     android:layout_width="match_parent"
-                    android:layout_height="477dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <ListView
-                            android:id="@+id/lstListaSectores"
-                            android:layout_width="match_parent"
-                            android:layout_height="475dp" />
-                    </LinearLayout>
-                </ScrollView>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <Button
-                        android:id="@+id/btnMainActivityAgregar"
-                        style="@style/Widget.AppCompat.Button.Colored"
-                        android:layout_width="159dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:insetLeft="5dp"
-                        android:insetRight="5dp"
-                        android:onClick="fn_NuevoSector"
-                        android:text="Agregar" />
-
-                    <Button
-                        android:id="@+id/btnMainActivityEditar"
-                        android:layout_width="166dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:insetLeft="5dp"
-                        android:insetRight="5dp"
-                        android:text="Editar" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-                    <Button
-                        android:id="@+id/btnMainActivityEliminar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:insetLeft="5dp"
-                        android:insetRight="5dp"
-                        android:text="Eliminar" />
-
-                    <Button
-                        android:id="@+id/btnMainActivityRegresar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:insetLeft="5dp"
-                        android:insetRight="5dp"
-                        android:onClick="fn_Regresar"
-                        android:text="Regresar" />
-                </LinearLayout>
-
+                    android:layout_height="470dp" />
             </LinearLayout>
         </ScrollView>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnSectoresActivityAgregar"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:insetLeft="5dp"
+                android:insetRight="5dp"
+                android:onClick="fn_CargarNuevoSectorActivity"
+                android:text="Agregar" />
+
+            <Button
+                android:id="@+id/btnSectoresActivityEditar"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:insetLeft="5dp"
+                android:insetRight="5dp"
+                android:text="Editar" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnSectoresActivityEliminar"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:insetLeft="5dp"
+                android:insetRight="5dp"
+                android:text="Eliminar" />
+
+            <Button
+                android:id="@+id/btnSectoresActivityRegresar"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:insetLeft="5dp"
+                android:insetRight="5dp"
+                android:onClick="fn_Regresar"
+                android:text="Regresar" />
+        </LinearLayout>
+
     </LinearLayout>
-//
 </androidx.constraintlayout.widget.ConstraintLayout>

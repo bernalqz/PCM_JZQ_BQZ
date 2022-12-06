@@ -8,11 +8,8 @@ import io.realm.RealmResults;
 public class cMedidorServicio {
 
     private Realm mRealm; 
-    
-//    
 
-
-
+//
     public List<cMedidor> fn_ListaMedidores()
     {
         RealmResults<cMedidor> mResultado = mRealm.where(cMedidor.class).findAll();
@@ -41,15 +38,20 @@ public class cMedidorServicio {
         return mMedidor;
     }
 
-    public boolean fn_AgregarMedidor(String _Nombre, String _Canton)
+    public boolean fn_AgregarMedidor(int _CodigoSector, String _Fecha, String _Nombre,
+                                     String _Lectura, String _Estado)
     {
         try
         {
             int mCodigo = fn_CalcularCodigoMedidor();
             mRealm.beginTransaction();
             cMedidor mMedidor = mRealm.createObject(cMedidor.class,mCodigo);
-            mMedidor.setNombre(_Nombre);
-            mMedidor.setCanton(_Canton);
+            mMedidor.setCodigoSector(_CodigoSector);
+            mMedidor.setSecuencia(mCodigo);
+            mMedidor.setFecha(_Fecha);
+            mMedidor.setNombreCliente(_Nombre);
+            mMedidor.setLectura(_Lectura);
+            mMedidor.setEstado(_Estado);
             mRealm.commitTransaction();
             return true;
         }
@@ -59,16 +61,22 @@ public class cMedidorServicio {
         }
     }
 
-    public boolean fn_ActualizarMedidor(int _CodigoMedidor, String _Nombre, String _Canton)
+    public boolean fn_ActualizarMedidor(int _Codigo, int _CodigoSector, String _Fecha, String _Nombre,
+                                        String _Lectura, String _Estado)
     {
         try
         {
-            cMedidor mMedidor = fn_BuscarMedidorPorCodigo(_CodigoMedidor);
+            cMedidor mMedidor = fn_BuscarMedidorPorCodigo(_Codigo);
             if(mMedidor != null)
             {
                 mRealm.beginTransaction();
-                mMedidor.setNombre(_Nombre);
-                mMedidor.setCanton(_Canton);
+                mMedidor.setCodigoSector(_CodigoSector);
+                mMedidor.setSecuencia(_Codigo);
+                mMedidor.setFecha(_Fecha);
+                mMedidor.setNombreCliente(_Nombre);
+                mMedidor.setLectura(_Lectura);
+                mMedidor.setEstado(_Estado);
+                mRealm.commitTransaction();
                 mRealm.commitTransaction();
                 return true;
             }
@@ -107,10 +115,6 @@ public class cMedidorServicio {
         }
 
     }    
-    
-    
-    
-    
-    
+
 //    
 }

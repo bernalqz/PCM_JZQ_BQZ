@@ -23,10 +23,6 @@ public class cMedidor extends RealmObject {
         return Codigo;
     }
 
-    public void setCodigo(int codigo) {
-        Codigo = codigo;
-    }
-
     public int getCodigoSector() {
         return CodigoSector;
     }

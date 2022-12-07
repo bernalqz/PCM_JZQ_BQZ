@@ -13,13 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PCM_JZQ"
         tools:targetApi="31" >
-        <activity
-            android:name=".SectoresActivity"
-            android:exported="false" >
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
+
         <activity
             android:name=".InformeActivity"
             android:exported="false" >
@@ -48,6 +42,9 @@
             android:exported="false" />
         <activity
             android:name=".RegistroActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SectoresActivity"
             android:exported="false" />
         <activity
             android:name=".LoginActivity"

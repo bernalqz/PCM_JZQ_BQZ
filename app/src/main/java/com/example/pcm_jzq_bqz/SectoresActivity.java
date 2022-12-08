@@ -72,7 +72,7 @@ public class SectoresActivity extends AppCompatActivity {
         });
 
     }
-
+//
     public void fn_ValidarCheckBox(View view)
     {
         cSectorAdaptador mSectorAdaptador = new cSectorAdaptador(this,mListaSectores,R.layout.adaptador_sectores);

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -21,6 +22,7 @@ public class SectoresActivity extends AppCompatActivity {
     cSectorServicio mServicio = new cSectorServicio(Realm.getDefaultInstance());
     List<cSector> mListaSectores;
     ListView mlstListaSectores;
+    cSector mSector = new cSector();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,24 +65,30 @@ public class SectoresActivity extends AppCompatActivity {
         mlstListaSectores.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int posicion, long l) {
-                cSector mSector = new cSector();
-                mSector = mServicio.fn_BuscarSectorPorCodigo(posicion+1);
-                String mMensaje = "Elemento seleccionado: " + mSector.getNombre();
-                Toast.makeText(SectoresActivity.this, mMensaje, Toast.LENGTH_SHORT).show();
-
-                Intent mPantalla = null;
-                switch (posicion)
-                {
-                    case 0:
-                        mPantalla = new Intent(SectoresActivity.this,MedidoresActivity.class);
-                        break;
-                    default:
-                        mPantalla = new Intent(SectoresActivity.this,MedidoresActivity.class);
-                        break;
-                }
-                startActivity(mPantalla);
+            mSector = mServicio.fn_BuscarSectorPorCodigo(posicion+1);
+                Toast.makeText(SectoresActivity.this, "Sector seleccionado: " + mSector.getNombre(),
+                        Toast.LENGTH_SHORT).show();
             }
         });
+
     }
+
+    public void fn_ValidarCheckBox(View view)
+    {
+        cSectorAdaptador mSectorAdaptador = new cSectorAdaptador(this,mListaSectores,R.layout.adaptador_sectores);
+        if(mSectorAdaptador.fn_ObtenerDatosCheckBox() != false)
+        {
+            Toast.makeText(this, "CheckBox sin seleccionar", Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+            Toast.makeText(this, "CheckBox seleccionado", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+
+
+
 
 }

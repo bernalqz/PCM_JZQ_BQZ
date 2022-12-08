@@ -53,10 +53,10 @@
 
         <CheckBox
             android:id="@+id/cbCheckBox"
-            android:layout_width="wrap_content"
-            android:layout_height="69dp"
-            android:layout_weight="1"
-            android:textColor="@color/white" />
+            android:layout_width="92dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
     </LinearLayout>
 
 //

@@ -4,9 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -70,21 +70,25 @@ public class SectoresActivity extends AppCompatActivity {
                         Toast.LENGTH_SHORT).show();
             }
         });
-
     }
-//
+
     public void fn_ValidarCheckBox(View view)
     {
-        cSectorAdaptador mSectorAdaptador = new cSectorAdaptador(this,mListaSectores,R.layout.adaptador_sectores);
-        if(mSectorAdaptador.fn_ObtenerDatosCheckBox() != false)
-        {
-            Toast.makeText(this, "CheckBox sin seleccionar", Toast.LENGTH_SHORT).show();
-        }
-        else
+        CheckBox checkBox = findViewById(R.id.cbCheckBox);
+
+        if(checkBox.isChecked() == true)
         {
             Toast.makeText(this, "CheckBox seleccionado", Toast.LENGTH_SHORT).show();
         }
+        else
+        {
+            Toast.makeText(this, "CheckBox sin seleccionar", Toast.LENGTH_SHORT).show();
+        }
 
     }
 
+
+
+
+//
 }

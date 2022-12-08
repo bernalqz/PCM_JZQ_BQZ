@@ -49,7 +49,6 @@ public class cSectorAdaptador extends BaseAdapter {
             vh.Codigo = convertView.findViewById(R.id.tvAdaptadorCodigo);
             vh.Nombre = convertView.findViewById(R.id.tvAdaptadorNombre);
             vh.Canton = convertView.findViewById(R.id.tvAdaptadorCanton);
-            vh.Opcion = convertView.findViewById(R.id.cbCheckBox);
             convertView.setTag(vh);
         }
         else
@@ -62,7 +61,6 @@ public class cSectorAdaptador extends BaseAdapter {
         vh.Codigo.setText(String.valueOf(mCodigoSector));
         vh.Nombre.setText(mSector.getNombre());
         vh.Canton.setText(mSector.getCanton());
-        vh.Opcion.setChecked(false);
         return convertView;
     }
 
@@ -72,28 +70,6 @@ public class cSectorAdaptador extends BaseAdapter {
         TextView Nombre;
         TextView Canton;
         CheckBox Opcion;
-
     }
-
-    public boolean fn_ObtenerDatosCheckBox() {
-        ViewHolder vh;
-        vh = new cSectorAdaptador.ViewHolder();
-        View convertView;
-        convertView = LayoutInflater.from(context).inflate(layout, null);
-        vh.Opcion = convertView.findViewById(R.id.cbCheckBox);
-
-        if (vh.Opcion.isChecked() == true) {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-
-
-
-
 
 }

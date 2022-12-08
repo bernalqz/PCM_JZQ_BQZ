@@ -66,7 +66,7 @@ public class cSectorAdaptador extends BaseAdapter {
         return convertView;
     }
 
-    public static class ViewHolder
+    public class ViewHolder
     {
         TextView Codigo;
         TextView Nombre;

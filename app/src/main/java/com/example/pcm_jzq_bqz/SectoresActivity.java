@@ -87,8 +87,4 @@ public class SectoresActivity extends AppCompatActivity {
 
     }
 
-
-
-
-
 }

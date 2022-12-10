@@ -6,21 +6,75 @@
     android:layout_height="match_parent">
 
 //
+    <!--
+        <LinearLayout
+            android:layout_width="384dp"
+            android:layout_height="72dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.005">
 
-    <LinearLayout
-        android:layout_width="384dp"
-        android:layout_height="72dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.005">
+            <LinearLayout
+                android:layout_width="296dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvAdaptadorCodigo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Código"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvAdaptadorNombre"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Nombre"
+                    android:textColor="@color/Rosado"
+                    android:textSize="20sp"
+                    android:textStyle="bold|italic" />
+
+                <TextView
+                    android:id="@+id/tvAdaptadorCanton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Cantón"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="italic" />
+
+            </LinearLayout>
+
+            <CheckBox
+                android:id="@+id/cbCheckBox"
+                android:layout_width="92dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+  -->
+    //
+
+
 
         <LinearLayout
-            android:layout_width="296dp"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_width="394dp"
+            android:layout_height="72dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0">
 
             <TextView
                 android:id="@+id/tvAdaptadorCodigo"
@@ -51,61 +105,7 @@
 
         </LinearLayout>
 
-        <CheckBox
-            android:id="@+id/cbCheckBox"
-            android:layout_width="92dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
-
-    </LinearLayout>
-
-//
-
-<!--
-
-    <LinearLayout
-        android:layout_width="394dp"
-        android:layout_height="72dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
-
-        <TextView
-            android:id="@+id/tvAdaptadorCodigo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Código"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/tvAdaptadorNombre"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Nombre"
-            android:textColor="@color/Rosado"
-            android:textSize="20sp"
-            android:textStyle="bold|italic" />
-
-        <TextView
-            android:id="@+id/tvAdaptadorCanton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Cantón"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            android:textStyle="italic" />
-
-    </LinearLayout>
-
--->
+ //
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -93,7 +93,7 @@
                         android:layout_weight="1"
                         android:insetLeft="5dp"
                         android:insetRight="5dp"
-                        android:onClick="fn_ValidarCheckBox"
+                        android:onClick="BorrarSector"
                         android:text="Eliminar" />
 
                     <Button

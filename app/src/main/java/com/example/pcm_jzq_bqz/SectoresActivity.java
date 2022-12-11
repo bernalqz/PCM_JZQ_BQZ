@@ -30,11 +30,13 @@ public class SectoresActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sectores);
-
+    //
         mlstListaSectores = findViewById(R.id.lstListaSectores);
-
         fn_CargarListaSectores();
         fn_CargarSectorSeleccionado();
+
+    //
+
     }
 
     @Override
@@ -49,6 +51,8 @@ public class SectoresActivity extends AppCompatActivity {
         mListaSectores = mServicio.fn_ListaSectores();
         cSectorAdaptador mSectorAdaptador = new cSectorAdaptador(this,mListaSectores,R.layout.adaptador_sectores);
         mlstListaSectores.setAdapter(mSectorAdaptador);
+        mposicion = -1;
+
     }
 //----------------------------
 
@@ -70,22 +74,45 @@ public class SectoresActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int posicion, long l) {
                 mposicion = posicion;
             mSector = mServicio.fn_BuscarSectorPorCodigo(posicion+1);
-                Toast.makeText(SectoresActivity.this, "Sector seleccionado: " + mSector.getNombre(),
+                Toast.makeText(SectoresActivity.this, "Sector " + mSector.getNombre() + " seleccionado" ,
                         Toast.LENGTH_SHORT).show();
             }
         });
     }
 // ------------------------------
 
-    public void fn_EditarSectorActivity(View view)
-    {
-        Intent mEditarSector = new Intent(SectoresActivity.this,EditarSectorActivity.class);
-        cSector mSector = mListaSectores.get(mposicion);
-        mEditarSector.putExtra("CodigoSector",mSector.getCodigoSector());
-        startActivity(mEditarSector);
+    public void fn_EditarSectorActivity(View view) {
+        if (mposicion != -1) {
+            Intent mEditarSector = new Intent(SectoresActivity.this, EditarSectorActivity.class);
+            cSector mSector = mListaSectores.get(mposicion);
+            mEditarSector.putExtra("CodigoSector", mSector.getCodigoSector());
+            startActivity(mEditarSector);
+        } else {
+            Toast.makeText(SectoresActivity.this, "Debe de seleccionar un Sector",
+                    Toast.LENGTH_SHORT).show();
+        }
+
     }
 
 
+// -----------------------------
+
+    public void BorrarSector(View v)
+    {
+
+        if (mposicion!= -1) {
+            cSector mSector = mListaSectores.get(mposicion);
+            mServicio.fn_EliminarSector(mSector.getCodigoSector());
+            fn_CargarListaSectores();
+        }
+
+        else
+        {
+            Toast.makeText(SectoresActivity.this, "Debe de seleccionar un Sector",
+                    Toast.LENGTH_SHORT).show();
+        }
+
+    }
 
 
 // -----------------------------

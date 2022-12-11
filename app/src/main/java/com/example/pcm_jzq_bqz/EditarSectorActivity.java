@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.pcm_jzq_bqz.Clases.cSector;
 import com.example.pcm_jzq_bqz.Clases.cSectorServicio;
@@ -67,6 +68,30 @@ public class EditarSectorActivity extends AppCompatActivity {
         }
 
     }
+   //-----
+
+    public void ActualizarSector(View v)
+    {
+
+        mServicioSector.fn_ActualizarSector(mCodigoSector,mNombre.getText().toString(),mCanton.getText().toString());
+
+        Toast.makeText(this,"Usuario actualizado",Toast.LENGTH_SHORT).show();
+    }
+
+
+  //------
+
+
+    public void BorrarSector(View v)
+    {
+
+        mServicioSector.fn_EliminarSector(mCodigoSector);
+        finish();
+
+
+    }
+
+
 
   // ------
 }

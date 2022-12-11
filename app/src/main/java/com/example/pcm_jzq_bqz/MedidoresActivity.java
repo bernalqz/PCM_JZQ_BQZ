@@ -14,16 +14,25 @@ public class MedidoresActivity extends AppCompatActivity {
         setContentView(R.layout.activity_medidores);
     }
 
+    // ----------------
     public void fn_Regresar(View view)
     {
         this.finish();
     }
 
-    public void fn_CrearNuevoMedidor(View view)
+    // ----------------------------------
+    public void frmIrAgregarMedidor(View v)
     {
         Intent mPantalla = new Intent(this,NuevoMedidorActivity.class);
         startActivity(mPantalla);
     }
+    // ------------------------------------
 
+    public void frmIrEditarMedidor(View v)
+    {
+        Intent mPantalla = new Intent(this,EditarMedidorActivity.class);
+        startActivity(mPantalla);
+    }
+    // ------------------------------------
 
 }

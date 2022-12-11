@@ -4,8 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/medidores_background"
-    tools:context=".MedidoresActivity">
+    android:background="@drawable/nuevo_medidor_background"
+    tools:context=".MedidoresActivity" >
+
+    <!--code add-->
+
 
     <LinearLayout
         android:layout_width="0dp"
@@ -23,10 +26,10 @@
             app:srcCompat="@drawable/water_meter_icon" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/textaView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Medidores"
+            android:text="Medidores del Sector"
             android:textAlignment="center"
             android:textColor="@color/Rosado"
             android:textSize="20sp"
@@ -42,7 +45,7 @@
                 android:orientation="vertical">
 
                 <ListView
-                    android:id="@+id/lstListaMedidores"
+                    android:id="@+id/lstaListaMSectores"
                     android:layout_width="match_parent"
                     android:layout_height="397dp" />
             </LinearLayout>
@@ -54,22 +57,23 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/btnMedidoresActivityAgregar"
+                android:id="@+id/btnaMedidoresActivityAgregar"
                 android:layout_width="138dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:insetLeft="5dp"
                 android:insetRight="5dp"
-                android:onClick="fn_CrearNuevoMedidor"
+                android:onClick="frmIrAgregarMedidor"
                 android:text="Agregar" />
 
             <Button
-                android:id="@+id/btnMedidoresActivityEditar"
+                android:id="@+id/btnaMedidoresActivityEditar"
                 android:layout_width="138dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:insetLeft="5dp"
                 android:insetRight="5dp"
+                android:onClick="frmIrEditarMedidor"
                 android:text="Editar" />
         </LinearLayout>
 
@@ -79,7 +83,7 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/btnMedidoresActivityEliminar"
+                android:id="@+id/btnaMedidoresActivityEliminar"
                 android:layout_width="138dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -88,7 +92,7 @@
                 android:text="Eliminar" />
 
             <Button
-                android:id="@+id/btnMedidoresActivityRegresar"
+                android:id="@+id/btnaMedidoresActivityRegresar"
                 android:layout_width="138dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -98,4 +102,18 @@
                 android:text="Regresar" />
         </LinearLayout>
     </LinearLayout>
+
+
+    <!--code add end-->
+
+    <!--
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></LinearLayout>
+    -->
 </androidx.constraintlayout.widget.ConstraintLayout>

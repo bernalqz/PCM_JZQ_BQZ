@@ -19,13 +19,13 @@ import java.util.List;
 import io.realm.Realm;
 
 public class SectoresActivity extends AppCompatActivity {
-    cSectorServicio mServicio = new cSectorServicio(Realm.getDefaultInstance());
     //
+    cSectorServicio mServicio = new cSectorServicio(Realm.getDefaultInstance());
     List<cSector> mListaSectores;
     ListView mlstListaSectores;
     cSector mSector = new cSector();
     int mposicion;
-//
+    //
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +38,7 @@ public class SectoresActivity extends AppCompatActivity {
     //
 
     }
-
+// -----------------
     @Override
     public void onResume()
     {

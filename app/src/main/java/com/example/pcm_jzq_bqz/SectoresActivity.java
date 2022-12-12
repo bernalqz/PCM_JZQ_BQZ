@@ -2,11 +2,12 @@ package com.example.pcm_jzq_bqz;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -23,8 +24,7 @@ public class SectoresActivity extends AppCompatActivity {
     cSectorServicio mServicio = new cSectorServicio(Realm.getDefaultInstance());
     List<cSector> mListaSectores;
     ListView mlstListaSectores;
-    cSector mSector = new cSector();
-    int mposicion;
+    int mposicion = 0;
     //
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +52,6 @@ public class SectoresActivity extends AppCompatActivity {
         cSectorAdaptador mSectorAdaptador = new cSectorAdaptador(this,mListaSectores,R.layout.adaptador_sectores);
         mlstListaSectores.setAdapter(mSectorAdaptador);
         mposicion = -1;
-
     }
 //----------------------------
 
@@ -60,6 +59,7 @@ public class SectoresActivity extends AppCompatActivity {
     {
         this.finish();
     }
+
 // -----------------------------
     public void fn_CargarNuevoSectorActivity(View view)
     {
@@ -72,10 +72,28 @@ public class SectoresActivity extends AppCompatActivity {
         mlstListaSectores.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int posicion, long l) {
-                mposicion = posicion;
-            mSector = mServicio.fn_BuscarSectorPorCodigo(posicion+1);
-                Toast.makeText(SectoresActivity.this, "Sector " + mSector.getNombre() + " seleccionado" ,
-                        Toast.LENGTH_SHORT).show();
+                cSector mSector = new cSector();
+                mSector = mServicio.fn_BuscarSectorPorCodigo(posicion+1);
+                String CodigoSector = String.valueOf(mSector.getCodigoSector());
+                String mMensaje = "Elemento seleccionado: " + mSector.getNombre();
+                Toast.makeText(SectoresActivity.this, mMensaje, Toast.LENGTH_SHORT).show();
+
+                SharedPreferences mCodigo = getSharedPreferences("CodigoSector", Context.MODE_PRIVATE);
+                SharedPreferences.Editor mAsignar = mCodigo.edit();
+                mAsignar.putString("Codigo", CodigoSector);
+                mAsignar.commit();
+
+                Intent mPantalla = null;
+                switch (posicion)
+                {
+                    case 0:
+                        mPantalla = new Intent(SectoresActivity.this,MedidoresActivity.class);
+                        break;
+                    default:
+                        mPantalla = new Intent(SectoresActivity.this,MedidoresActivity.class);
+                        break;
+                }
+                startActivity(mPantalla);
             }
         });
     }
@@ -116,28 +134,4 @@ public class SectoresActivity extends AppCompatActivity {
 
 
 // -----------------------------
-
-
-
-
-/*
-    public void fn_ValidarCheckBox(View view)
-    {
-        CheckBox checkBox = findViewById(R.id.cbCheckBox);
-
-        if(checkBox.isChecked() == true)
-        {
-            Toast.makeText(this, "CheckBox seleccionado", Toast.LENGTH_SHORT).show();
-        }
-        else
-        {
-            Toast.makeText(this, "CheckBox sin seleccionar", Toast.LENGTH_SHORT).show();
-        }
-
-    }
-
-*/
-
-
-//
 }

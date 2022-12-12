@@ -141,7 +141,7 @@
             android:layout_height="104dp">
 
             <RadioButton
-                android:id="@+id/rbMeidorActivo"
+                android:id="@+id/rbMedidorActivo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Activo" />
@@ -157,6 +157,7 @@
             android:id="@+id/btnNuevoMedidor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="fn_AgregarMedidor"
             android:text="Crear Medidor" />
 
         <Button

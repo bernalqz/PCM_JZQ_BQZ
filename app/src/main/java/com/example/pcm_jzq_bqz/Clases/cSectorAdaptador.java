@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.example.pcm_jzq_bqz.R;
@@ -69,7 +68,6 @@ public class cSectorAdaptador extends BaseAdapter {
         TextView Codigo;
         TextView Nombre;
         TextView Canton;
-        CheckBox Opcion;
     }
 
 }

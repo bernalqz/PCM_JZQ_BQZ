@@ -32,11 +32,10 @@ public class MainActivity extends AppCompatActivity {
         startActivity(mPantalla);
     }
     // --------------------
-    public void fn_SectoresActivity(View view)
+    public  void fn_CargarSectoresActivity(View view)
     {
-        Intent mPantalla = new Intent(this,SectoresActivity.class);
+        Intent mPantalla = new Intent(MainActivity.this, SectoresActivity.class);
         startActivity(mPantalla);
-
     }
     // --------------------
     public void frmRegresarSalir(View v)

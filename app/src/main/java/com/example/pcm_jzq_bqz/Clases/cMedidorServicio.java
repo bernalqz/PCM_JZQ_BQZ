@@ -7,7 +7,12 @@ import io.realm.RealmResults;
 
 public class cMedidorServicio {
 
-    private Realm mRealm; 
+    private Realm mRealm;
+
+    public cMedidorServicio(Realm _Realm)
+    {
+        this.mRealm = _Realm;
+    }
 
 //
     public List<cMedidor> fn_ListaMedidores()

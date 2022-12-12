@@ -23,7 +23,7 @@ public class MedidoresActivity extends AppCompatActivity {
     // ----------------------------------
     public void frmIrAgregarMedidor(View v)
     {
-        Intent mPantalla = new Intent(this,NuevoMedidorActivity.class);
+        Intent mPantalla = new Intent(this, NuevoMedidorActivity.class);
         startActivity(mPantalla);
     }
     // ------------------------------------
@@ -34,5 +34,7 @@ public class MedidoresActivity extends AppCompatActivity {
         startActivity(mPantalla);
     }
     // ------------------------------------
+
+
 
 }

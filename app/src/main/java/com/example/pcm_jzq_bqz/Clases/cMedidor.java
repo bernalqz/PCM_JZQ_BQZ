@@ -5,7 +5,7 @@ import io.realm.annotations.PrimaryKey;
 
 public class cMedidor extends RealmObject {
     @PrimaryKey
-    private int Codigo;
+    private int CodigoMedidor;
 
     private int CodigoSector;
     private int Secuencia;
@@ -14,13 +14,14 @@ public class cMedidor extends RealmObject {
     private String Lectura;
     private String Estado;
 
+    @Override
     public String toString()
     {
         return NombreCliente;
     }
 
     public int getCodigo() {
-        return Codigo;
+        return CodigoMedidor;
     }
 
     public int getCodigoSector() {

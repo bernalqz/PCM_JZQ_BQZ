@@ -39,10 +39,8 @@ public class SectoresMedidoresActivity extends AppCompatActivity {
         //
 
     }
-    //
 
     // -------------------
-
     @Override
     public void onResume()
     {
@@ -57,7 +55,6 @@ public class SectoresMedidoresActivity extends AppCompatActivity {
         cSectorAdaptador mSectorAdaptador = new cSectorAdaptador(this,mListaSectores,R.layout.adaptador_sectores);
         mlstListaSectores.setAdapter(mSectorAdaptador);
         mposicion = -1;
-
     }
     //----------------------------
 

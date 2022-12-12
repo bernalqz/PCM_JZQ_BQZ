@@ -7,12 +7,14 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.pcm_jzq_bqz.Clases.cMedidor;
 import com.example.pcm_jzq_bqz.Clases.cMedidorServicio;
 import com.example.pcm_jzq_bqz.Clases.cMedidoresAdaptador;
+import com.example.pcm_jzq_bqz.Clases.cSectorAdaptador;
 
 import java.util.List;
 
@@ -21,6 +23,7 @@ import io.realm.Realm;
 public class MedidoresActivity extends AppCompatActivity {
 
     cMedidorServicio mServicio = new cMedidorServicio(Realm.getDefaultInstance());
+    cMedidor mMedidor = new cMedidor();
     List<cMedidor> mListaMedidores;
     ListView mlstListaMedidores;
 
@@ -43,11 +46,12 @@ public class MedidoresActivity extends AppCompatActivity {
 
     private void fn_CargarListaMedidores()
     {
-        mListaMedidores = mServicio.fn_CargarListaMedidores(fn_CargarSharePreferences());
-        cMedidoresAdaptador mAdaptador = new cMedidoresAdaptador(this,mListaMedidores,R.layout.adaptador_medidores);
+        int _CodigoSector = fn_CargarSharePreferences();
+        mListaMedidores = mServicio.fn_CargarListaMedidores(_CodigoSector);
+        cMedidoresAdaptador mAdaptador = new cMedidoresAdaptador(MedidoresActivity.this,
+                mListaMedidores, R.layout.adaptador_medidores);
         mlstListaMedidores.setAdapter(mAdaptador);
     }
-
     // ----------------
     public void fn_Regresar(View view)
     {
@@ -77,13 +81,12 @@ public class MedidoresActivity extends AppCompatActivity {
         return mCodigo01;
     }
 
-    private void fn_CargarToast()
+    /*private void fn_CargarToast()
     {
         cMedidor mMedidor = new cMedidor();
         mMedidor = mServicio.fn_BuscarMedidorPorCodigo(1);
         String mMensaje = "Medidor: " + mMedidor.getNombreCliente() + " Código: " + mMedidor.getCodigoSector();
         Toast.makeText(this, mMensaje, Toast.LENGTH_SHORT).show();
-    }
-
+    }*/
 
 }

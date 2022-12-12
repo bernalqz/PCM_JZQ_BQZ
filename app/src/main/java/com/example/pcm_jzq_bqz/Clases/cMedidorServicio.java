@@ -16,7 +16,7 @@ public class cMedidorServicio {
 //
     public List<cMedidor> fn_CargarListaMedidores(int _CodigoSector)
     {
-        RealmResults<cMedidor> mResultado = mRealm.where(cMedidor.class).equalTo("CodigoSector", _CodigoSector).findAll();
+        RealmResults<cMedidor> mResultado = mRealm.where(cMedidor.class).equalTo("CodigoSector",_CodigoSector).findAll();
         return mRealm.copyFromRealm(mResultado);
     }
 
@@ -115,7 +115,6 @@ public class cMedidorServicio {
         {
             return false;
         }
-
     }    
 
 //    

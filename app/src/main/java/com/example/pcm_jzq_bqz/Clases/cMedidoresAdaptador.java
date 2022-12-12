@@ -49,7 +49,6 @@ public class cMedidoresAdaptador extends BaseAdapter {
             vh.Secuencia = convertView.findViewById(R.id.tvAMSecuencia);
             vh.Cliente = convertView.findViewById(R.id.tvAMCliente);
             vh.Estado = convertView.findViewById(R.id.tvAMEstado);
-            vh.Sector = convertView.findViewById(R.id.tvAMSector);
             convertView.setTag(vh);
         }
         else
@@ -59,10 +58,9 @@ public class cMedidoresAdaptador extends BaseAdapter {
 
         cMedidor mMedidor = mLista.get(posicion);
         int mCodigoMedidor = mMedidor.getCodigo();
-        vh.Secuencia.setText(String.valueOf(mCodigoMedidor));
+        vh.Secuencia.setText("Secuencia: " + String.valueOf(mCodigoMedidor));
         vh.Cliente.setText(mMedidor.getNombreCliente());
         vh.Estado.setText(mMedidor.getEstado());
-        vh.Sector.setText(mMedidor.getCodigoSector());
         return convertView;
 
     }
@@ -72,7 +70,6 @@ public class cMedidoresAdaptador extends BaseAdapter {
         TextView Secuencia;
         TextView Cliente;
         TextView Estado;
-        TextView Sector;
     }
 
 }

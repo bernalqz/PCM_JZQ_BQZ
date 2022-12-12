@@ -56,13 +56,6 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".LecturaMedidoresActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".MainActivity"
             android:exported="false" />
         <activity
@@ -73,6 +66,9 @@
             android:exported="false" />
         <activity
             android:name=".SectoresActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LecturaMedidoresActivity"
             android:exported="false" />
         <activity
             android:name=".LoginActivity"

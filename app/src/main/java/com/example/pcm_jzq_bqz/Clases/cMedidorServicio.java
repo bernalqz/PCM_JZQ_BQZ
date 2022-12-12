@@ -13,11 +13,10 @@ public class cMedidorServicio {
     {
         this.mRealm = _Realm;
     }
-
 //
     public List<cMedidor> fn_CargarListaMedidores(int _CodigoSector)
     {
-        RealmResults<cMedidor> mResultado = mRealm.where(cMedidor.class).equalTo("CodigoSector", _CodigoSector).findAllAsync();
+        RealmResults<cMedidor> mResultado = mRealm.where(cMedidor.class).equalTo("CodigoSector", _CodigoSector).findAll();
         return mRealm.copyFromRealm(mResultado);
     }
 

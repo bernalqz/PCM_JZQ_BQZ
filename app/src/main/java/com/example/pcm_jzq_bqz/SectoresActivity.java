@@ -24,7 +24,7 @@ public class SectoresActivity extends AppCompatActivity {
     cSectorServicio mServicio = new cSectorServicio(Realm.getDefaultInstance());
     List<cSector> mListaSectores;
     ListView mlstListaSectores;
-    int mposicion = 0;
+    int mposicion = -1;
     //
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +34,6 @@ public class SectoresActivity extends AppCompatActivity {
         mlstListaSectores = findViewById(R.id.lstListaSectores);
         fn_CargarListaSectores();
         fn_CargarSectorSeleccionado();
-
     //
 
     }
@@ -46,6 +45,21 @@ public class SectoresActivity extends AppCompatActivity {
         fn_CargarListaSectores();
     }
 // ----------------------------
+    private void fn_CargarSectorSeleccionado()
+    {
+        mlstListaSectores.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int posicion, long l) {
+                mposicion = posicion;
+                cSector mSector = new cSector();
+                mSector = mServicio.fn_BuscarSectorPorCodigo(posicion+1);
+                Toast.makeText(SectoresActivity.this, "Sector " + mSector.getNombre() + " seleccionado" ,
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+
     private void fn_CargarListaSectores()
     {
         mListaSectores = mServicio.fn_ListaSectores();
@@ -67,37 +81,6 @@ public class SectoresActivity extends AppCompatActivity {
         startActivity(mPantalla);
     }
 //-----------------------------
-    private void fn_CargarSectorSeleccionado()
-    {
-        mlstListaSectores.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int posicion, long l) {
-                cSector mSector = new cSector();
-                mSector = mServicio.fn_BuscarSectorPorCodigo(posicion+1);
-                String CodigoSector = String.valueOf(mSector.getCodigoSector());
-                String mMensaje = "Elemento seleccionado: " + mSector.getNombre();
-                Toast.makeText(SectoresActivity.this, mMensaje, Toast.LENGTH_SHORT).show();
-
-                SharedPreferences mCodigo = getSharedPreferences("CodigoSector", Context.MODE_PRIVATE);
-                SharedPreferences.Editor mAsignar = mCodigo.edit();
-                mAsignar.putString("Codigo", CodigoSector);
-                mAsignar.commit();
-
-                Intent mPantalla = null;
-                switch (posicion)
-                {
-                    case 0:
-                        mPantalla = new Intent(SectoresActivity.this,MedidoresActivity.class);
-                        break;
-                    default:
-                        mPantalla = new Intent(SectoresActivity.this,MedidoresActivity.class);
-                        break;
-                }
-                startActivity(mPantalla);
-            }
-        });
-    }
-// ------------------------------
 
     public void fn_EditarSectorActivity(View view) {
         if (mposicion != -1) {
@@ -112,18 +95,16 @@ public class SectoresActivity extends AppCompatActivity {
 
     }
 
-
 // -----------------------------
 
     public void BorrarSector(View v)
     {
-
         if (mposicion!= -1) {
             cSector mSector = mListaSectores.get(mposicion);
             mServicio.fn_EliminarSector(mSector.getCodigoSector());
             fn_CargarListaSectores();
+            Toast.makeText(this, "Sector eliminado", Toast.LENGTH_SHORT).show();
         }
-
         else
         {
             Toast.makeText(SectoresActivity.this, "Debe de seleccionar un Sector",
@@ -131,7 +112,6 @@ public class SectoresActivity extends AppCompatActivity {
         }
 
     }
-
 
 // -----------------------------
 }

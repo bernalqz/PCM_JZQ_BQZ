@@ -19,10 +19,9 @@ import io.realm.Realm;
 public class NuevoMedidorActivity extends AppCompatActivity {
 
     int Dia, Mes, Year;
-    EditText mSector, mConsecutivo, mCliente, mSecuencia;
+    EditText mSector, mCliente;
     TextView mFecha;
     RadioButton mActivo, mInactivo;
-    String mEstado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,51 +58,45 @@ public class NuevoMedidorActivity extends AppCompatActivity {
     {
         this.finish();
     }
+
     //
     public void fn_AgregarMedidor(View view)
     {
-        if(mSector.equals(""))
+        if(mSector.getText().equals(""))
         {
-            Toast.makeText(this, "Agrege un número de sector", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Agregue un codigo de sector", Toast.LENGTH_SHORT).show();
         }
         else
         {
-            if(mCliente.equals(""))
+            if(mCliente.getText().equals(""))
             {
-                Toast.makeText(this, "Agregue un número de sector y " +
-                        "el nombre del cliente", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Agregue un codigo de sector y nombre del ciente",
+                        Toast.LENGTH_SHORT).show();
             }
             else
             {
-                if(mActivo.isChecked() == false & mInactivo.isChecked() == false)
+                String mEstado="";
+                if(mActivo.isChecked()==true)
                 {
-                    Toast.makeText(this, "Seleccione Activo o Inactivo", Toast.LENGTH_SHORT).show();
+                    mEstado="Activo";
                 }
                 else
                 {
-                    try
-                    {
-                        cMedidorServicio mServicio = new cMedidorServicio(Realm.getDefaultInstance());
-                        int mCodigoSector = Integer.parseInt(mSector.getText().toString());
+                    mEstado="Inactivo";
+                }
+                try
+                {
+                    int _CodigoSector = Integer.parseInt(mSector.getText().toString());
+                    String _Fecha = fn_ObtenerFecha();
 
-                        if(mActivo.isChecked() == true)
-                        {
-                            mEstado = "Activo";
-                        }
-                        else
-                        {
-                            mEstado = "Inactivo";
-                        }
+                    cMedidorServicio mServicio = new cMedidorServicio(Realm.getDefaultInstance());
+                    mServicio.fn_AgregarMedidor(_CodigoSector, _Fecha, mCliente.getText().toString(), mEstado);
+                    fn_Inicializar();
+                    Toast.makeText(this, "Medidor agregado", Toast.LENGTH_SHORT).show();
 
-                        mServicio.fn_AgregarMedidor(mCodigoSector, fn_ObtenerFecha(),
-                                mCliente.getText().toString(), mEstado);
-                        fn_Inicializar();
-                        Toast.makeText(this, "Agregado correctamente", Toast.LENGTH_SHORT).show();
-                    }
-                    catch(Exception e)
-                    {
-                        Toast.makeText(this, "Error al agregar", Toast.LENGTH_SHORT).show();
-                    }
+                }catch (Exception e)
+                {
+                    Toast.makeText(this, "Error al agregar", Toast.LENGTH_SHORT).show();
                 }
             }
         }

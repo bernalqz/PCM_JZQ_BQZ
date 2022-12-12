@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.pcm_jzq_bqz.Clases.cMedidor;
 import com.example.pcm_jzq_bqz.Clases.cMedidorServicio;
@@ -75,4 +76,14 @@ public class MedidoresActivity extends AppCompatActivity {
 
         return mCodigo01;
     }
+
+    private void fn_CargarToast()
+    {
+        cMedidor mMedidor = new cMedidor();
+        mMedidor = mServicio.fn_BuscarMedidorPorCodigo(1);
+        String mMensaje = "Medidor: " + mMedidor.getNombreCliente() + " Código: " + mMedidor.getCodigoSector();
+        Toast.makeText(this, mMensaje, Toast.LENGTH_SHORT).show();
+    }
+
+
 }

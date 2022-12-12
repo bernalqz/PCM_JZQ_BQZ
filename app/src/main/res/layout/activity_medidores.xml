@@ -45,9 +45,9 @@
                 android:orientation="vertical">
 
                 <ListView
-                    android:id="@+id/lstaListaMSectores"
+                    android:id="@+id/lstListaMedidores"
                     android:layout_width="match_parent"
-                    android:layout_height="397dp" />
+                    android:layout_height="400dp" />
             </LinearLayout>
         </ScrollView>
 

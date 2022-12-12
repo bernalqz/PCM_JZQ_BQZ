@@ -8,7 +8,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.TextView;
 import android.widget.Toast;
+import java.util.Calendar;
 
 import com.example.pcm_jzq_bqz.Clases.cMedidorServicio;
 
@@ -16,8 +18,11 @@ import io.realm.Realm;
 
 public class NuevoMedidorActivity extends AppCompatActivity {
 
+    int Dia, Mes, Year;
     EditText mSector, mConsecutivo, mCliente, mSecuencia;
+    TextView mFecha;
     RadioButton mActivo, mInactivo;
+    String mEstado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,14 +30,13 @@ public class NuevoMedidorActivity extends AppCompatActivity {
         setContentView(R.layout.activity_nuevo_medidor);
 
         mSector = findViewById(R.id.txtMedidorSector);
-        mConsecutivo = findViewById(R.id.txtMedidorConsecutivo);
         mCliente = findViewById(R.id.txtMedidorDuenio);
-        mSecuencia = findViewById(R.id.txtMedidorSecuencia);
         mActivo = findViewById(R.id.rbMedidorActivo);
         mInactivo = findViewById(R.id.rbMedidorInactivo);
+        mFecha = findViewById(R.id.tvFecha);
 
+        mFecha.setText(fn_ObtenerFecha());
         fn_CargarSharePreferences();
-
     }
 
     @Override
@@ -44,9 +48,7 @@ public class NuevoMedidorActivity extends AppCompatActivity {
 
     private void fn_Inicializar()
     {
-        mConsecutivo.setText("");
         mCliente.setText("");
-        mSecuencia.setText("");
         mActivo.setChecked(false);
         mInactivo.setChecked(false);
     }
@@ -57,7 +59,6 @@ public class NuevoMedidorActivity extends AppCompatActivity {
     {
         this.finish();
     }
-
     //
     public void fn_AgregarMedidor(View view)
     {
@@ -67,50 +68,45 @@ public class NuevoMedidorActivity extends AppCompatActivity {
         }
         else
         {
-            if(mConsecutivo.equals(""))
+            if(mCliente.equals(""))
             {
-                Toast.makeText(this, "Agregue un número de sector y un consecutivo", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Agregue un número de sector y " +
+                        "el nombre del cliente", Toast.LENGTH_SHORT).show();
             }
             else
             {
-                if(mCliente.equals(""))
+                if(mActivo.isChecked() == false & mInactivo.isChecked() == false)
                 {
-                    Toast.makeText(this, "Agregue un número de sector, un consecutivo y " +
-                            "el nombre del cliente", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Seleccione Activo o Inactivo", Toast.LENGTH_SHORT).show();
                 }
                 else
                 {
-                    if(mSecuencia.equals(""))
+                    try
                     {
-                        Toast.makeText(this, "Agregue un número de sector, un consecutivo, " +
-                                "el nombre del cliente y la secuencia", Toast.LENGTH_SHORT).show();
-                    }
-                    if(mActivo.isChecked() == false & mInactivo.isChecked() == false)
-                    {
-                        Toast.makeText(this, "Seleccione Activo o Inactivo", Toast.LENGTH_SHORT).show();
-                    }
-                    else
-                    {
-                        try
+                        cMedidorServicio mServicio = new cMedidorServicio(Realm.getDefaultInstance());
+                        int mCodigoSector = Integer.parseInt(mSector.getText().toString());
+
+                        if(mActivo.isChecked() == true)
                         {
-
-
-                        }catch(Exception e)
+                            mEstado = "Activo";
+                        }
+                        else
                         {
-
+                            mEstado = "Inactivo";
                         }
 
-
-
-
+                        mServicio.fn_AgregarMedidor(mCodigoSector, fn_ObtenerFecha(),
+                                mCliente.getText().toString(), mEstado);
+                        fn_Inicializar();
+                        Toast.makeText(this, "Agregado correctamente", Toast.LENGTH_SHORT).show();
+                    }
+                    catch(Exception e)
+                    {
+                        Toast.makeText(this, "Error al agregar", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
         }
-
-
-
-
     }
 
     private void fn_CargarSharePreferences()
@@ -120,5 +116,14 @@ public class NuevoMedidorActivity extends AppCompatActivity {
         mSector.setText(mCodigoObtenido);
     }
 
+    public String fn_ObtenerFecha()
+    {
+        Calendar mFecha = Calendar.getInstance();
+        Dia = mFecha.get(Calendar.DAY_OF_MONTH);
+        Mes = mFecha.get(Calendar.MONTH);
+        Year = mFecha.get(Calendar.YEAR);
+        String mDate = Mes + "/" + Dia + "/" + Year;
+        return mDate;
+    }
 
 }

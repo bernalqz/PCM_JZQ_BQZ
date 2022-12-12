@@ -15,9 +15,9 @@ public class cMedidorServicio {
     }
 
 //
-    public List<cMedidor> fn_ListaMedidores()
+    public List<cMedidor> fn_CargarListaMedidores(int _CodigoSector)
     {
-        RealmResults<cMedidor> mResultado = mRealm.where(cMedidor.class).findAll();
+        RealmResults<cMedidor> mResultado = mRealm.where(cMedidor.class).equalTo("CodigoSector", _CodigoSector).findAll();
         return mRealm.copyFromRealm(mResultado);
     }
 
@@ -43,8 +43,7 @@ public class cMedidorServicio {
         return mMedidor;
     }
 
-    public boolean fn_AgregarMedidor(int _CodigoSector, String _Fecha, String _Nombre,
-                                     String _Lectura, String _Estado)
+    public boolean fn_AgregarMedidor(int _CodigoSector, String _Fecha, String _Nombre, String _Estado)
     {
         try
         {
@@ -55,7 +54,6 @@ public class cMedidorServicio {
             mMedidor.setSecuencia(mCodigo);
             mMedidor.setFecha(_Fecha);
             mMedidor.setNombreCliente(_Nombre);
-            mMedidor.setLectura(_Lectura);
             mMedidor.setEstado(_Estado);
             mRealm.commitTransaction();
             return true;

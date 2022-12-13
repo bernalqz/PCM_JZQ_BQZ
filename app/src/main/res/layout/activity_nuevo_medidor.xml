@@ -83,7 +83,7 @@
             tools:layout_editor_absoluteY="161dp" />
 
         <EditText
-            android:id="@+id/txtMedidorDuenio"
+            android:id="@+id/txteMedidorDuenio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -94,7 +94,7 @@
             tools:layout_editor_absoluteY="312dp" />
 
         <TextView
-            android:id="@+id/textView11"
+            android:id="@+id/texteView11"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Estado"
@@ -109,13 +109,13 @@
             android:layout_height="104dp">
 
             <RadioButton
-                android:id="@+id/rbMedidorActivo"
+                android:id="@+id/rbeMedidorActivo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Activo" />
 
             <RadioButton
-                android:id="@+id/rbMedidorInactivo"
+                android:id="@+id/rbeMedidorInactivo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Inactivo" />

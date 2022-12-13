@@ -29,9 +29,9 @@ public class NuevoMedidorActivity extends AppCompatActivity {
         setContentView(R.layout.activity_nuevo_medidor);
 
         mSector = findViewById(R.id.txtMedidorSector);
-        mCliente = findViewById(R.id.txtMedidorDuenio);
-        mActivo = findViewById(R.id.rbMedidorActivo);
-        mInactivo = findViewById(R.id.rbMedidorInactivo);
+        mCliente = findViewById(R.id.txteMedidorDuenio);
+        mActivo = findViewById(R.id.rbeMedidorActivo);
+        mInactivo = findViewById(R.id.rbeMedidorInactivo);
         mFecha = findViewById(R.id.tvFecha);
 
         mFecha.setText(fn_ObtenerFecha());
@@ -91,8 +91,8 @@ public class NuevoMedidorActivity extends AppCompatActivity {
 
                     cMedidorServicio mServicio = new cMedidorServicio(Realm.getDefaultInstance());
                     mServicio.fn_AgregarMedidor(_CodigoSector, _Fecha, mCliente.getText().toString(), mEstado);
+                    Toast.makeText(this, "Agregado: "+mServicio.buscarMedidorXNombre(mCliente.getText().toString()), Toast.LENGTH_SHORT).show();
                     fn_Inicializar();
-                    Toast.makeText(this, "Medidor agregado", Toast.LENGTH_SHORT).show();
 
                 }catch (Exception e)
                 {

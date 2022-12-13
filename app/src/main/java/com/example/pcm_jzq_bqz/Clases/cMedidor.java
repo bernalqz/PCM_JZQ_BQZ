@@ -13,6 +13,7 @@ public class cMedidor extends RealmObject {
     private String NombreCliente;
     private String Lectura;
     private String Estado;
+    private String FechaLectura;
 
     @Override
     public String toString()
@@ -70,5 +71,21 @@ public class cMedidor extends RealmObject {
 
     public void setEstado(String estado) {
         Estado = estado;
+    }
+
+    public int getCodigoMedidor() {
+        return CodigoMedidor;
+    }
+
+    public void setCodigoMedidor(int codigoMedidor) {
+        CodigoMedidor = codigoMedidor;
+    }
+
+    public String getFechaLectura() {
+        return FechaLectura;
+    }
+
+    public void setFechaLectura(String fechaLectura) {
+        FechaLectura = fechaLectura;
     }
 }

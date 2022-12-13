@@ -9,29 +9,39 @@
 
 
     <LinearLayout
-        android:layout_width="393dp"
-        android:layout_height="716dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/imageView7"
+        <TextView
+            android:id="@+id/tveFecha"
             android:layout_width="match_parent"
-            android:layout_height="85dp"
+            android:layout_height="wrap_content"
+            android:text="00/00/00"
+            android:textAlignment="textEnd"
+            android:textColor="@color/Rosado"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/imageeView6"
+            android:layout_width="wrap_content"
+            android:layout_height="61dp"
             android:textAlignment="center"
             app:srcCompat="@drawable/water_meter_icon"
             tools:layout_editor_absoluteX="154dp"
             tools:layout_editor_absoluteY="16dp" />
 
         <TextView
-            android:id="@+id/textaView3"
+            android:id="@+id/texetaView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="20px"
-            android:text="Agregar Medidor"
+            android:text="Editar Medidor"
             android:textAlignment="center"
             android:textColor="@color/Rosado"
             android:textSize="20sp"
@@ -40,7 +50,7 @@
             tools:layout_editor_absoluteY="118dp" />
 
         <TextView
-            android:id="@+id/textView7"
+            android:id="@+id/texteView6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Sector:"
@@ -62,27 +72,7 @@
             tools:layout_editor_absoluteY="198dp" />
 
         <TextView
-            android:id="@+id/textView8"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Consecutivo"
-            android:textAlignment="center"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            tools:layout_editor_absoluteX="160dp"
-            tools:layout_editor_absoluteY="161dp" />
-
-        <EditText
-            android:id="@+id/txteMedidorConsecutivo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Consecutivo"
-            android:inputType="textPersonName"
-            android:textAlignment="center" />
-
-        <TextView
-            android:id="@+id/textView9"
+            android:id="@+id/texteView8"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Nombre del Cliente"
@@ -104,10 +94,10 @@
             tools:layout_editor_absoluteY="312dp" />
 
         <TextView
-            android:id="@+id/textView11"
+            android:id="@+id/texteView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Secuencia"
+            android:text="Numero de Medidor"
             android:textAlignment="center"
             android:textSize="16sp"
             android:textStyle="bold"
@@ -115,18 +105,40 @@
             tools:layout_editor_absoluteY="161dp" />
 
         <EditText
-            android:id="@+id/txteMedidorSecuencia"
+            android:id="@+id/txteMedidorNumero"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Secuencia"
+            android:hint="Numero de Medidor"
             android:inputType="textPersonName"
             android:textAlignment="center"
             tools:layout_editor_absoluteX="100dp"
             tools:layout_editor_absoluteY="312dp" />
 
         <TextView
-            android:id="@+id/textView12"
+            android:id="@+id/texteView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Lectura"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="160dp"
+            tools:layout_editor_absoluteY="161dp" />
+
+        <EditText
+            android:id="@+id/txteMedidorLectura"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Lectura"
+            android:inputType="textPersonName"
+            android:textAlignment="center"
+            tools:layout_editor_absoluteX="100dp"
+            tools:layout_editor_absoluteY="312dp" />
+
+        <TextView
+            android:id="@+id/texteView11"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Estado"
@@ -141,7 +153,7 @@
             android:layout_height="104dp">
 
             <RadioButton
-                android:id="@+id/rbeMeidorActivo"
+                android:id="@+id/rbeMedidorActivo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Activo" />
@@ -153,18 +165,29 @@
                 android:text="Inactivo" />
         </RadioGroup>
 
-        <Button
-            android:id="@+id/btneNuevoMedidor"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Crear Medidor" />
+            android:layout_height="50dp"
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/btneRegresar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="fn_Regresar"
-            android:text="Regresar" />
+            <Button
+                android:id="@+id/btnNuevoMedidor"
+                android:layout_width="212dp"
+                android:layout_height="wrap_content"
+                android:insetLeft="5dp"
+                android:insetRight="5dp"
+                android:onClick="fn_AgregarMedidor"
+                android:text="Editar" />
+
+            <Button
+                android:id="@+id/btnRegresar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:insetLeft="5dp"
+                android:insetRight="5dp"
+                android:onClick="fn_Regresar"
+                android:text="Regresar" />
+        </LinearLayout>
 
 
     </LinearLayout>

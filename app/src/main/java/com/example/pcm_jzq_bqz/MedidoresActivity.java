@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.example.pcm_jzq_bqz.Clases.cMedidor;
 import com.example.pcm_jzq_bqz.Clases.cMedidorServicio;
 import com.example.pcm_jzq_bqz.Clases.cMedidoresAdaptador;
+import com.example.pcm_jzq_bqz.Clases.cSector;
 import com.example.pcm_jzq_bqz.Clases.cSectorAdaptador;
 
 import java.util.List;
@@ -72,18 +73,20 @@ public class MedidoresActivity extends AppCompatActivity {
     }
     // ------------------------------------
 
-    public void frmIrEditarMedidor(View v)
-    {
-        if (mposicion!= -1) {
-        Intent mPantalla = new Intent(this,EditarMedidorActivity.class);
-        startActivity(mPantalla);
-        }
-        else
-        {
+    public void frmIrEditarMedidor(View v) {
+        if (mposicion != -1) {
+            Intent mEditarMedidor = new Intent(MedidoresActivity.this, EditarMedidorActivity.class);
+            cMedidor mMedidor = mListaMedidores.get(mposicion);
+            mEditarMedidor.putExtra("CodigoMedidor", mMedidor.getSecuencia());
+
+            startActivity(mEditarMedidor);
+        } else {
             Toast.makeText(MedidoresActivity.this, "Debe de seleccionar un Medidor",
                     Toast.LENGTH_SHORT).show();
         }
+
     }
+
     // ------------------------------------
     private int fn_CargarSharePreferences()
     {

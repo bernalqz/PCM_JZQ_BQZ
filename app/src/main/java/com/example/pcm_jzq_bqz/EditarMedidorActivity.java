@@ -21,27 +21,27 @@ import io.realm.Realm;
 public class EditarMedidorActivity extends AppCompatActivity {
 
     //
-    int Dia, Mes, Year;
-    int mCodigoMedidor;
+    int Dia, Mes, Year,mCodigoMedidor,mLectura,mSector;
+
     cMedidor mMedidor;
     cMedidorServicio mServicioMedidor = new cMedidorServicio(Realm.getDefaultInstance());
-    EditText mSector,mNombre, mNumeroMedidor, mLectura, mEstado;
+    EditText mNombre, mNumeroMedidor, mEstado;
     TextView mFecha;
-    String mActivoInact;
     RadioButton mActivo, mInactivo;
     //
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editar_medidor);
+
         //
-        mSector = findViewById(R.id.txteMedidorSector);
+        //mSector = findViewById(R.id.txteMedidorSector);
         mNombre = findViewById(R.id.txteMedidorDuenio);
         mNumeroMedidor = findViewById(R.id.txteMedidorNumero);
-        mLectura = findViewById(R.id.txteMedidorLectura);
+        //mLectura = findViewById(R.id.txteMedidorLectura);
         mActivo = findViewById(R.id.rbeMedidorActivo);
         mInactivo = findViewById(R.id.rbeMedidorInactivo);
-        Inicializa();
+        //Inicializa();
         LeerPutExtra();
         //
     }
@@ -59,34 +59,40 @@ public class EditarMedidorActivity extends AppCompatActivity {
         {
             mCodigoMedidor = mBundle.getInt("CodigoMedidor",0);
             mMedidor = mServicioMedidor.fn_BuscarMedidorPorCodigo(mCodigoMedidor);
+            //Cargar Datos//
             mNumeroMedidor.setText(Integer.toString(mMedidor.getCodigoMedidor()));
 
-            //Cargar Datos//
-            mSector.setText(Integer.toString(mMedidor.getCodigoSector()));
+
+            //mSector.setText(Integer.toString(mMedidor.getCodigoSector()));
             mNombre.setText((mMedidor.getNombreCliente()));
-            mLectura.setText(Integer.toString(mMedidor.getLectura()));
-            mActivoInact = mMedidor.getEstado();
-            if(mActivoInact.trim().equals("Activo"))
+            //mLectura.setText(Integer.toString(mMedidor.getLectura()));
+            //mEstado = mMedidor.getEstado();
+            /*if(mActivoInact.trim().equals("Activo"))
             {
                 mActivo.setChecked(true);
                 mInactivo.setChecked(false);
             }
+                }
 
-        }
-    }
+      */
+    }}
 
     //---------------------
 
-    private void Inicializa()
+    //private void Inicializa()
+   /*
     {
-        mSector.setText("");
+        //mSector.setText("");
         mNombre.setText("");
         mNumeroMedidor.setText("");
-        mLectura.setText("");
+       //mLectura.setText(0);
 
 
     }
+
+    */
 // -------------------
+        /*
 public String fn_ObtenerFecha()
 {
     Calendar mFecha = Calendar.getInstance();
@@ -96,31 +102,33 @@ public String fn_ObtenerFecha()
     String mDate = Mes + "/" + Dia + "/" + Year;
     return mDate;
 }
-//-----------------
+*/
 
+//-----------------
+/*
     public void fn_EditarMedidor(View v)
     {
 
                 try
                 {
 
-                    mServicioMedidor.fn_ActualizarMedidor()
+                    mServicioMedidor.fn_ActualizarMedidor(mCodigoMedidor,1,mNombre.getText().toString(),0,mActivoInact);
 
-                    Toast.makeText(this, "Agregado: ", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Editado: ", Toast.LENGTH_SHORT).show();
 
 
                 }catch (Exception e)
                 {
-                    Toast.makeText(this, "Error al agregar", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Error al editar", Toast.LENGTH_SHORT).show();
                 }
             }
 
 
 
 
-    //-----
+    //-----Integer.getInteger(mSector.getText().toString())
 
-
+*/
 
 
 }

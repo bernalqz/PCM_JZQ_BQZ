@@ -176,7 +176,7 @@
                 android:layout_height="wrap_content"
                 android:insetLeft="5dp"
                 android:insetRight="5dp"
-                android:onClick="fn_AgregarMedidor"
+                android:onClick="fn_EditarMedidor"
                 android:text="Editar" />
 
             <Button

@@ -6,7 +6,6 @@ import io.realm.annotations.PrimaryKey;
 public class cMedidor extends RealmObject {
     @PrimaryKey
     private int CodigoMedidor;
-
     private int CodigoSector;
     private int Secuencia;
     private String Fecha;

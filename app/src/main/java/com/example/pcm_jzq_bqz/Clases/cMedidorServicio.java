@@ -65,22 +65,19 @@ public class cMedidorServicio {
         }
     }
 
-    public boolean fn_ActualizarMedidor(int _Codigo, int _CodigoSector, String _Fecha, String _Nombre,
-                                        int _Lectura, String _Estado)
+    public boolean fn_ActualizarMedidor(int _CodigoMedidor, int _CodigoSector, String _Nombre,int _Lectura, String _Estado )
     {
         try
         {
-            cMedidor mMedidor = fn_BuscarMedidorPorCodigo(_Codigo);
+            cMedidor mMedidor = fn_BuscarMedidorPorCodigo(_CodigoMedidor);
             if(mMedidor != null)
             {
                 mRealm.beginTransaction();
+                mMedidor.setCodigoMedidor(_CodigoMedidor);
                 mMedidor.setCodigoSector(_CodigoSector);
-                mMedidor.setSecuencia(_Codigo);
-                mMedidor.setFecha(_Fecha);
                 mMedidor.setNombreCliente(_Nombre);
                 mMedidor.setLectura(_Lectura);
                 mMedidor.setEstado(_Estado);
-                mRealm.commitTransaction();
                 mRealm.commitTransaction();
                 return true;
             }

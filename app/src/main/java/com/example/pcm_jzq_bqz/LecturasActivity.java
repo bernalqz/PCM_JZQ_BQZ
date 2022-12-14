@@ -2,10 +2,13 @@ package com.example.pcm_jzq_bqz;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Calendar;
 
@@ -26,7 +29,7 @@ public class LecturasActivity extends AppCompatActivity {
         mCodigoMedidor = findViewById(R.id.tvLACodigoMedidor);
         mConsecutivoMedidor = findViewById(R.id.tvLACodigoConsecutivo);
         mLectura = findViewById(R.id.txtLectura);
-
+        fn_CargarSharePreferences();
         //mFecha.setText(fn_ObtenerFecha());
     }
 
@@ -35,11 +38,22 @@ public class LecturasActivity extends AppCompatActivity {
     {
         super.onResume();
     }
-
+    // -------
     public void fn_Regresar(View view)
     {
         this.finish();
     }
+    // ---
+
+    private void fn_CargarSharePreferences()
+    {
+        SharedPreferences mCodigo = getSharedPreferences("CodigoSector", Context.MODE_PRIVATE);
+        String mCodigoObtenido = mCodigo.getString("Codigo", "Sector nulo");
+        mSector.setText("Sector: "+mCodigoObtenido);
+
+    }
+
+    // ---
 
     private String fn_ObtenerFecha()
     {

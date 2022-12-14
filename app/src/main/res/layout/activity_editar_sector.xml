@@ -78,7 +78,7 @@
         android:layout_marginEnd="32dp"
 
         android:onClick="ActualizarSector"
-        android:text="Guardar"
+        android:text="Editar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

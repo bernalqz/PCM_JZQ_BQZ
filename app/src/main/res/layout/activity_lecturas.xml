@@ -64,7 +64,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="10dp"
-            android:text="Codigo Consecutivo"
+            android:text="Lectura Anterior"
             android:textAlignment="center"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -102,7 +102,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:backgroundTint="@color/azul"
-                android:text="Guardar"
+                android:text="Lectura"
                 android:textStyle="bold" />
 
             <Button

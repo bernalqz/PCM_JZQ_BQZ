@@ -23,7 +23,7 @@ public class cMedidorServicio {
     private final static int fn_CalcularCodigoMedidor()
     {
         Realm mRealm = Realm.getDefaultInstance();
-        Number mCodigoActual = mRealm.where(cMedidor.class).max("CodigoMedidor");
+        Number mCodigoActual = mRealm.where(cMedidor.class).max("Secuencia");
         int mCodigoNuevo;
         if(mCodigoActual == null)
         {
@@ -38,7 +38,7 @@ public class cMedidorServicio {
 
     public cMedidor fn_BuscarMedidorPorCodigo(int _Codigo)
     {
-        cMedidor mMedidor = mRealm.where(cMedidor.class).equalTo("CodigoMedidor",_Codigo).findFirst();
+        cMedidor mMedidor = mRealm.where(cMedidor.class).equalTo("Secuencia",_Codigo).findFirst();
         return mMedidor;
     }
 
@@ -51,6 +51,7 @@ public class cMedidorServicio {
             cMedidor mMedidor = mRealm.createObject(cMedidor.class,mCodigo);
             mMedidor.setCodigoSector(_CodigoSector);
             mMedidor.setSecuencia(mCodigo);
+            //mMedidor.setCodigoMedidor(mCodigo);
             mMedidor.setFecha(_Fecha);
             mMedidor.setNombreCliente(_Nombre);
             mMedidor.setEstado(_Estado);
@@ -65,7 +66,7 @@ public class cMedidorServicio {
         }
     }
 
-    public boolean fn_ActualizarMedidor(int _CodigoMedidor, int _CodigoSector, String _Nombre,int _Lectura, String _Estado )
+    public boolean fn_ActualizarMedidor(int _CodigoMedidor, String _Nombre,int _Lectura, String _Estado )
     {
         try
         {
@@ -73,8 +74,6 @@ public class cMedidorServicio {
             if(mMedidor != null)
             {
                 mRealm.beginTransaction();
-                mMedidor.setCodigoMedidor(_CodigoMedidor);
-                mMedidor.setCodigoSector(_CodigoSector);
                 mMedidor.setNombreCliente(_Nombre);
                 mMedidor.setLectura(_Lectura);
                 mMedidor.setEstado(_Estado);

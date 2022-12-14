@@ -28,14 +28,16 @@ public class NuevoMedidorActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nuevo_medidor);
 
+        //
         mSector = findViewById(R.id.txtMedidorSector);
         mCliente = findViewById(R.id.txteMedidorDuenio);
         mActivo = findViewById(R.id.rbeMedidorActivo);
         mInactivo = findViewById(R.id.rbeMedidorInactivo);
         mFecha = findViewById(R.id.tvFecha);
-
         mFecha.setText(fn_ObtenerFecha());
         fn_CargarSharePreferences();
+        fn_Inicializar();
+        //
     }
 
     @Override
@@ -48,7 +50,7 @@ public class NuevoMedidorActivity extends AppCompatActivity {
     private void fn_Inicializar()
     {
         mCliente.setText("");
-        mActivo.setChecked(false);
+        mActivo.setChecked(true);
         mInactivo.setChecked(false);
     }
 

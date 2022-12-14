@@ -57,10 +57,10 @@ public class cMedidoresAdaptador extends BaseAdapter {
         }
 
         cMedidor mMedidor = mLista.get(posicion);
-        int mCodigoMedidor = mMedidor.getCodigo();
+        int mCodigoMedidor = mMedidor.getSecuencia();
         vh.Secuencia.setText("Medidor: " + String.valueOf(mCodigoMedidor));
-        vh.Cliente.setText(mMedidor.getNombreCliente());
-        vh.Estado.setText(mMedidor.getEstado());
+        vh.Cliente.setText("Cliente: " + mMedidor.getNombreCliente());
+        vh.Estado.setText("Estado: " + mMedidor.getEstado());
         return convertView;
 
     }

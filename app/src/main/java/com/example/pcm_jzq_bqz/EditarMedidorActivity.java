@@ -84,13 +84,16 @@ public class EditarMedidorActivity extends AppCompatActivity {
 
  // ----------------
 
+
+
+
     public void fn_EditarMedidor(View v)
     {
 
                 try
                 {
 
-                    mServicioMedidor.fn_ActualizarMedidor(mCodigoMedidor,1,mNombre.getText().toString(),0,mEstado);
+                    mServicioMedidor.fn_ActualizarMedidor(mCodigoMedidor,mNombre.getText().toString(),Integer.parseInt(mLectura.getText().toString()),mEstado);
 
                     Toast.makeText(this, "Editado: ", Toast.LENGTH_SHORT).show();
 
@@ -103,8 +106,7 @@ public class EditarMedidorActivity extends AppCompatActivity {
 
     //---------------------
 
-        /*
-public String fn_ObtenerFecha()
+    public String fn_ObtenerFecha()
 {
     Calendar mFecha = Calendar.getInstance();
     Dia = mFecha.get(Calendar.DAY_OF_MONTH);
@@ -113,12 +115,11 @@ public String fn_ObtenerFecha()
     String mDate = Mes + "/" + Dia + "/" + Year;
     return mDate;
 }
-*/
-
-//-----------------
 
 
-    //-----Integer.getInteger(mSector.getText().toString())
+    //----------------- Integer.getInteger(mLectura.getText().toString())
+
+
 
 
 

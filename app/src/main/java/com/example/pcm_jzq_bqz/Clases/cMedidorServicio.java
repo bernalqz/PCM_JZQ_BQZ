@@ -41,7 +41,33 @@ public class cMedidorServicio {
         cMedidor mMedidor = mRealm.where(cMedidor.class).equalTo("Secuencia",_Codigo).findFirst();
         return mMedidor;
     }
+    // -------------------------****
+    public cMedidor fnBuscarMedidorPorSectoryCodigo(int _CodSector)
+    {
+        Realm mRealm = Realm.getDefaultInstance();
+        cMedidor mResultado=null;
+        Number mMedidormin =1;
 
+        //mMedidormin = mRealm.where(cMedidor.class).min("Secuencia");
+
+
+
+        cMedidor mMedidor = mRealm.where(cMedidor.class).equalTo("Secuencia",mMedidormin.intValue()).findFirst();
+
+        if((int)(mMedidor.getCodigoSector())==(_CodSector))
+        {mResultado=mMedidor;}
+        else
+        {
+            mMedidormin = mMedidormin.intValue() +1;
+
+        }
+
+        return mResultado;
+
+
+    }
+
+    //--------------------------****
     public boolean fn_AgregarMedidor(int _CodigoSector, String _Fecha, String _Nombre, String _Estado)
     {
         try

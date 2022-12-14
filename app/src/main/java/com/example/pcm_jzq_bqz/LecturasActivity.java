@@ -10,9 +10,20 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.pcm_jzq_bqz.Clases.cMedidor;
+import com.example.pcm_jzq_bqz.Clases.cMedidorServicio;
+
 import java.util.Calendar;
 
+import io.realm.Realm;
+
 public class LecturasActivity extends AppCompatActivity {
+
+
+
+    cMedidorServicio mServicioNedidor = new cMedidorServicio(Realm.getDefaultInstance());
+    cMedidor mMedidor = new cMedidor();
+
 
     TextView mFecha, mSector, mCodigoMedidor, mConsecutivoMedidor;
     EditText mLectura;
@@ -54,6 +65,17 @@ public class LecturasActivity extends AppCompatActivity {
     }
 
     // ---
+    private void fn_JalarDatordeBD()
+    {
+        mMedidor = mServicioNedidor.fn_BuscarMedidorPorCodigo(Integer.parseInt(mCodigoMedidor.toString()));
+
+
+    }
+
+
+
+    //---
+
 
     private String fn_ObtenerFecha()
     {

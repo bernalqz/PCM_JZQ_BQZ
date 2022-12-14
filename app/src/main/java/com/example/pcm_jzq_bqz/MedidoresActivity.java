@@ -36,7 +36,7 @@ public class MedidoresActivity extends AppCompatActivity {
         setContentView(R.layout.activity_medidores);
     //
         mlstListaMedidores = findViewById(R.id.lstListaMedidores);
-        int mposicion = -1;
+        mposicion = -1;
         fn_CargarListaMedidores();
         fn_CargarMedidorSeleccionado();
     //
@@ -46,7 +46,7 @@ public class MedidoresActivity extends AppCompatActivity {
     public void onResume()
     {
         super.onResume();
-        int mposicion = -1;
+        mposicion = -1;
         fn_CargarListaMedidores();
         fn_CargarMedidorSeleccionado();
     }
@@ -73,6 +73,7 @@ public class MedidoresActivity extends AppCompatActivity {
     }
     // ------------------------------------
 
+
     public void frmIrEditarMedidor(View v) {
         if (mposicion != -1) {
             Intent mEditarMedidor = new Intent(MedidoresActivity.this, EditarMedidorActivity.class);
@@ -84,7 +85,6 @@ public class MedidoresActivity extends AppCompatActivity {
             Toast.makeText(MedidoresActivity.this, "Debe de seleccionar un Medidor",
                     Toast.LENGTH_SHORT).show();
         }
-
     }
 
     // ------------------------------------

@@ -55,6 +55,7 @@ public class cMedidorServicio {
             mMedidor.setNombreCliente(_Nombre);
             mMedidor.setEstado(_Estado);
             mMedidor.setFechaLectura("0");
+            mMedidor.setLectura(0);
             mRealm.commitTransaction();
             return true;
         }
@@ -65,7 +66,7 @@ public class cMedidorServicio {
     }
 
     public boolean fn_ActualizarMedidor(int _Codigo, int _CodigoSector, String _Fecha, String _Nombre,
-                                        String _Lectura, String _Estado)
+                                        int _Lectura, String _Estado)
     {
         try
         {

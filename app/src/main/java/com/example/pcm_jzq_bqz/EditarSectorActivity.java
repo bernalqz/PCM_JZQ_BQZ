@@ -75,7 +75,7 @@ public class EditarSectorActivity extends AppCompatActivity {
 
         mServicioSector.fn_ActualizarSector(mCodigoSector,mNombre.getText().toString(),mCanton.getText().toString());
 
-        Toast.makeText(this,"Usuario actualizado",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,"Sector actualizado",Toast.LENGTH_SHORT).show();
     }
 
 

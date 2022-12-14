@@ -27,6 +27,7 @@ public class EditarMedidorActivity extends AppCompatActivity {
     cMedidorServicio mServicioMedidor = new cMedidorServicio(Realm.getDefaultInstance());
     EditText mSector,mNombre, mNumeroMedidor, mLectura, mEstado;
     TextView mFecha;
+    String mActivoInact;
     RadioButton mActivo, mInactivo;
     //
     @Override
@@ -51,8 +52,6 @@ public class EditarMedidorActivity extends AppCompatActivity {
     }
     //
     // -------------------
-
-
     private void LeerPutExtra()
     {
         Bundle mBundle=getIntent().getExtras();
@@ -60,15 +59,21 @@ public class EditarMedidorActivity extends AppCompatActivity {
         {
             mCodigoMedidor = mBundle.getInt("CodigoMedidor",0);
             mMedidor = mServicioMedidor.fn_BuscarMedidorPorCodigo(mCodigoMedidor);
-            mNumeroMedidor.setText(mMedidor.getCodigoMedidor());
+            mNumeroMedidor.setText(Integer.toString(mMedidor.getCodigoMedidor()));
 
-
+            //Cargar Datos//
+            mSector.setText(Integer.toString(mMedidor.getCodigoSector()));
+            mNombre.setText((mMedidor.getNombreCliente()));
+            mLectura.setText(Integer.toString(mMedidor.getLectura()));
+            mActivoInact = mMedidor.getEstado();
+            if(mActivoInact.trim().equals("Activo"))
+            {
+                mActivo.setChecked(true);
+                mInactivo.setChecked(false);
+            }
 
         }
-
     }
-
-
 
     //---------------------
 
@@ -92,49 +97,25 @@ public String fn_ObtenerFecha()
     return mDate;
 }
 //-----------------
-/*
-    public void fn_AgregarMedidor(View view)
+
+    public void fn_EditarMedidor(View v)
     {
-        if(mSector.getText().equals(""))
-        {
-            Toast.makeText(this, "Agregue un codigo de sector", Toast.LENGTH_SHORT).show();
-        }
-        else
-        {
-            if(mCliente.getText().equals(""))
-            {
-                Toast.makeText(this, "Agregue un codigo de sector y nombre del ciente",
-                        Toast.LENGTH_SHORT).show();
-            }
-            else
-            {
-                String mEstado="";
-                if(mActivo.isChecked()==true)
-                {
-                    mEstado="Activo";
-                }
-                else
-                {
-                    mEstado="Inactivo";
-                }
+
                 try
                 {
-                    int _CodigoSector = Integer.parseInt(mSector.getText().toString());
-                    String _Fecha = fn_ObtenerFecha();
 
-                    cMedidorServicio mServicio = new cMedidorServicio(Realm.getDefaultInstance());
-                    mServicio.fn_AgregarMedidor(_CodigoSector, _Fecha, mCliente.getText().toString(), mEstado);
-                    Toast.makeText(this, "Agregado: "+mServicio.buscarMedidorXNombre(mCliente.getText().toString()), Toast.LENGTH_SHORT).show();
-                    fn_Inicializar();
+                    mServicioMedidor.fn_ActualizarMedidor()
+
+                    Toast.makeText(this, "Agregado: ", Toast.LENGTH_SHORT).show();
+
 
                 }catch (Exception e)
                 {
                     Toast.makeText(this, "Error al agregar", Toast.LENGTH_SHORT).show();
                 }
             }
-        }
-    }
-*/
+
+
 
 
     //-----

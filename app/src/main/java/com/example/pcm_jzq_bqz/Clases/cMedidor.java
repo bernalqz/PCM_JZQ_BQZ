@@ -11,7 +11,7 @@ public class cMedidor extends RealmObject {
     private int Secuencia;
     private String Fecha;
     private String NombreCliente;
-    private String Lectura;
+    private int Lectura;
     private String Estado;
     private String FechaLectura;
 
@@ -57,11 +57,11 @@ public class cMedidor extends RealmObject {
         NombreCliente = nombreCliente;
     }
 
-    public String getLectura() {
+    public int getLectura() {
         return Lectura;
     }
 
-    public void setLectura(String lectura) {
+    public void setLectura(int lectura) {
         Lectura = lectura;
     }
 

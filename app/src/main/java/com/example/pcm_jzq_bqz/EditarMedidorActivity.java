@@ -20,13 +20,14 @@ import io.realm.Realm;
 
 public class EditarMedidorActivity extends AppCompatActivity {
 
-    //
-    int Dia, Mes, Year,mCodigoMedidor,mLectura,mSector;
+    //Variables globales
 
     cMedidor mMedidor;
     cMedidorServicio mServicioMedidor = new cMedidorServicio(Realm.getDefaultInstance());
-    EditText mNombre, mNumeroMedidor, mEstado;
+    EditText mNombre, mNumeroMedidor, mLectura, mSector;
     TextView mFecha;
+    String mEstado;
+    int Dia, Mes, Year, mCodigoMedidor;
     RadioButton mActivo, mInactivo;
     //
     @Override
@@ -35,63 +36,73 @@ public class EditarMedidorActivity extends AppCompatActivity {
         setContentView(R.layout.activity_editar_medidor);
 
         //
-        //mSector = findViewById(R.id.txteMedidorSector);
+        mSector = findViewById(R.id.txteMedidorSector);
         mNombre = findViewById(R.id.txteMedidorDuenio);
         mNumeroMedidor = findViewById(R.id.txteMedidorNumero);
-        //mLectura = findViewById(R.id.txteMedidorLectura);
+        mLectura = findViewById(R.id.txteMedidorLectura);
         mActivo = findViewById(R.id.rbeMedidorActivo);
         mInactivo = findViewById(R.id.rbeMedidorInactivo);
-        //Inicializa();
         LeerPutExtra();
         //
     }
-    //
-    public void fn_Regresar(View view)
+
+    // ---------------------
+    @Override
+    public void onResume()
     {
+        super.onResume();
+    }
+    // ------------------
+
+    public void fn_Regresar(View view) {
         this.finish();
     }
-    //
+
     // -------------------
-    private void LeerPutExtra()
-    {
-        Bundle mBundle=getIntent().getExtras();
-        if (mBundle!=null)
-        {
-            mCodigoMedidor = mBundle.getInt("CodigoMedidor",0);
+
+    private void LeerPutExtra() {
+        Bundle mBundle = getIntent().getExtras();
+        if (mBundle != null) {
+            mCodigoMedidor = mBundle.getInt("CodigoMedidor", 0);
             mMedidor = mServicioMedidor.fn_BuscarMedidorPorCodigo(mCodigoMedidor);
             //Cargar Datos//
             mNumeroMedidor.setText(Integer.toString(mMedidor.getCodigoMedidor()));
+            mSector.setText(Integer.toString(mMedidor.getCodigoSector()));
+            mNombre.setText(mMedidor.getNombreCliente());
+            mLectura.setText(Integer.toString(mMedidor.getLectura()));
+            mEstado = mMedidor.getEstado().toString();
 
-
-            //mSector.setText(Integer.toString(mMedidor.getCodigoSector()));
-            mNombre.setText((mMedidor.getNombreCliente()));
-            //mLectura.setText(Integer.toString(mMedidor.getLectura()));
-            //mEstado = mMedidor.getEstado();
-            /*if(mActivoInact.trim().equals("Activo"))
-            {
+            if (mEstado.trim().equals("Activo")) {
                 mActivo.setChecked(true);
-                mInactivo.setChecked(false);
-            }
-                }
+                mInactivo.setChecked(false);}
+            else{
+                mActivo.setChecked(false);
+                mInactivo.setChecked(true);}
+             }
+        }
 
-      */
-    }}
+
+ // ----------------
+
+    public void fn_EditarMedidor(View v)
+    {
+
+                try
+                {
+
+                    mServicioMedidor.fn_ActualizarMedidor(mCodigoMedidor,1,mNombre.getText().toString(),0,mEstado);
+
+                    Toast.makeText(this, "Editado: ", Toast.LENGTH_SHORT).show();
+
+
+                }catch (Exception e)
+                {
+                    Toast.makeText(this, "Error al editar", Toast.LENGTH_SHORT).show();
+                }
+            }
 
     //---------------------
 
-    //private void Inicializa()
-   /*
-    {
-        //mSector.setText("");
-        mNombre.setText("");
-        mNumeroMedidor.setText("");
-       //mLectura.setText(0);
-
-
-    }
-
-    */
-// -------------------
         /*
 public String fn_ObtenerFecha()
 {
@@ -105,30 +116,10 @@ public String fn_ObtenerFecha()
 */
 
 //-----------------
-/*
-    public void fn_EditarMedidor(View v)
-    {
-
-                try
-                {
-
-                    mServicioMedidor.fn_ActualizarMedidor(mCodigoMedidor,1,mNombre.getText().toString(),0,mActivoInact);
-
-                    Toast.makeText(this, "Editado: ", Toast.LENGTH_SHORT).show();
-
-
-                }catch (Exception e)
-                {
-                    Toast.makeText(this, "Error al editar", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-
 
 
     //-----Integer.getInteger(mSector.getText().toString())
 
-*/
 
 
 }

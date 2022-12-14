@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
+    // ----------------
     public void frmIrAInformeAtivity(View v)
     {
         Intent mPantalla = new Intent(this,InformeActivity.class);

@@ -38,7 +38,7 @@ public class cMedidorServicio {
 
     public cMedidor fn_BuscarMedidorPorCodigo(int _Codigo)
     {
-        cMedidor mMedidor = mRealm.where(cMedidor.class).equalTo("Secuencia",_Codigo).findFirst();
+        cMedidor mMedidor = mRealm.where(cMedidor.class).equalTo("CodigoMedidor",_Codigo).findFirst();
         return mMedidor;
     }
 

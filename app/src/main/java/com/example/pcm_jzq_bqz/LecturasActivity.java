@@ -107,7 +107,7 @@ public class LecturasActivity extends AppCompatActivity {
     }
 
 // -------------------------------------------------------------------------------------------------
-    public void fn_Siguiente(View view)
+    /*public void fn_Siguiente(View view)
     {
         i++;
         mMedidorObjeto = mListaMedidores.get(i);
@@ -116,25 +116,43 @@ public class LecturasActivity extends AppCompatActivity {
         mCodigoMedidor.setText("Código de medidor: " + String.valueOf(mMedidorObjeto.getCodigoMedidor()));
         mNombreCliente.setText("Nombre de cliente: " + mMedidorObjeto.getNombreCliente());
         mLecturaAnterior.setText("Lectura anterior: " + String.valueOf(mMedidorObjeto.getLectura()));
-    }
+    }*/
 
+    public void fn_Siguiente(View view)
+    {
+        i++;
+
+        if(i < mListaMedidores.size())
+        {
+            mMedidorObjeto = mListaMedidores.get(i);
+            mSector.setText("Sector: " + mSectorObjeto.getNombre());
+            mCodigoMedidor.setText("Código de medidor: " + String.valueOf(mMedidorObjeto.getCodigoMedidor()));
+            mNombreCliente.setText("Nombre de cliente: " + mMedidorObjeto.getNombreCliente());
+            mLecturaAnterior.setText("Lectura anterior: " + String.valueOf(mMedidorObjeto.getLectura()));
+        }
+        else
+        {
+            Toast.makeText(this, "No hay más elementos", Toast.LENGTH_SHORT).show();
+        }
+    }
 
     public void fn_Anterior(View view)
     {
-        i--;
-        mMedidorObjeto = mListaMedidores.get(i);
+        if(i == 0)
+        {
+            Toast.makeText(this, "Este es el primer elemento", Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+            i--;
 
-        mSector.setText("Sector: " + mSectorObjeto.getNombre());
-        mCodigoMedidor.setText("Código de medidor: " + String.valueOf(mMedidorObjeto.getCodigoMedidor()));
-        mNombreCliente.setText("Nombre de cliente: " + mMedidorObjeto.getNombreCliente());
-        mLecturaAnterior.setText("Lectura anterior: " + String.valueOf(mMedidorObjeto.getLectura()));
+            mMedidorObjeto = mListaMedidores.get(i);
+            mSector.setText("Sector: " + mSectorObjeto.getNombre());
+            mCodigoMedidor.setText("Código de medidor: " + String.valueOf(mMedidorObjeto.getCodigoMedidor()));
+            mNombreCliente.setText("Nombre de cliente: " + mMedidorObjeto.getNombreCliente());
+            mLecturaAnterior.setText("Lectura anterior: " + String.valueOf(mMedidorObjeto.getLectura()));
+        }
     }
-
 // -------------------------------------------------------------------------------------------------
-
-
-
-
-
 
 }

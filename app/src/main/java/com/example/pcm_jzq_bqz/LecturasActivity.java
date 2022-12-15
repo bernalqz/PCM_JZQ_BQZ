@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.pcm_jzq_bqz.Clases.cMedidor;
 import com.example.pcm_jzq_bqz.Clases.cMedidorServicio;
@@ -28,9 +29,10 @@ public class LecturasActivity extends AppCompatActivity {
     cSectorServicio mServicioSector = new cSectorServicio(Realm.getDefaultInstance());
     cMedidor mMedidorObjeto = new cMedidor();
     cSector mSectorObjeto = new cSector();
+    List<cMedidor> mListaMedidores;
     int i = 0;
 
-    TextView mFecha, mSector, mCodigoMedidor, mLecturaAnterior;
+    TextView mFecha, mSector, mCodigoMedidor, mLecturaAnterior, mNombreCliente;
     EditText mLectura;
 
     @Override
@@ -40,10 +42,12 @@ public class LecturasActivity extends AppCompatActivity {
 
         mFecha = findViewById(R.id.tvLAFecha);
         mSector = findViewById(R.id.tvLASector);
+        mNombreCliente = findViewById(R.id.tvLADuenio);
         mCodigoMedidor = findViewById(R.id.tvLACodigoMedidor);
         mLectura = findViewById(R.id.txtLectura);
         mLecturaAnterior = findViewById(R.id.tvLALecturaAnterior);
         mFecha.setText(getFecha());
+
         fn_TraerMedidores();
     }
 
@@ -52,47 +56,31 @@ public class LecturasActivity extends AppCompatActivity {
     {
         super.onResume();
     }
-    // -------
+
+    // ---------------------------------------------------------------------------------------------
     private void fn_TraerMedidores()
     {
         SharedPreferences mCodigo = getSharedPreferences("CodigoSector", Context.MODE_PRIVATE);
         String mCodigoObtenido = mCodigo.getString("Codigo", "Sector nulo");
         int _CodigoSector = Integer.parseInt(mCodigoObtenido);
 
-        List<cMedidor> mListaMedidores = mServicioMedidor.fn_CargarListaMedidores(_CodigoSector);
+        mListaMedidores = mServicioMedidor.fn_CargarListaMedidores(_CodigoSector);
         mMedidorObjeto = mListaMedidores.get(i);
         mSectorObjeto = mServicioSector.fn_BuscarSectorPorCodigo(_CodigoSector);
 
         mSector.setText("Sector: " + mSectorObjeto.getNombre());
+        mNombreCliente.setText("Nombre de cliente: " + mMedidorObjeto.getNombreCliente());
         mCodigoMedidor.setText("Código de medidor: " + String.valueOf(mMedidorObjeto.getCodigoMedidor()));
         mLecturaAnterior.setText("Lectura anterior: " + String.valueOf(mMedidorObjeto.getLectura()));
 
     }
-
-    // -------
+    //----------------------------------------------------------------------------------------------
     public void fn_Regresar(View view)
     {
         this.finish();
     }
-    // ---
 
-    private void fn_CargarSharePreferences()
-    {
-        SharedPreferences mCodigo = getSharedPreferences("CodigoSector", Context.MODE_PRIVATE);
-        String mCodigoObtenido = mCodigo.getString("Codigo", "Sector nulo");
-    }
-
-    // ---
-    /*private void fn_JalarDatordeBD()
-    {
-        mMedidor = mServicioMedidor.fn_BuscarMedidorPorCodigo(Integer.parseInt(mCodigoMedidor.toString()));
-
-
-    }*/
-
-    //---
-
-
+    // ---------------------------------------------------------------------------------------------
     private String getFecha()
     {
         Date c = Calendar.getInstance().getTime();
@@ -100,5 +88,53 @@ public class LecturasActivity extends AppCompatActivity {
         String formattedDate = df.format(c);
         return formattedDate;
     }
+
+    // ---------------------------------------------------------------------------------------------
+    public void fn_RegistrarLectura(View view)
+    {
+        try
+        {
+            int _Lectura = Integer.parseInt(mLectura.getText().toString());
+            mMedidorObjeto = mListaMedidores.get(i);
+            mServicioMedidor.fn_RegistrarLectura(mMedidorObjeto.getCodigoMedidor(),
+                    mFecha.getText().toString(), _Lectura);
+            Toast.makeText(this, "Registro correcto", Toast.LENGTH_SHORT).show();
+        }
+        catch(Exception e)
+        {
+            Toast.makeText(this, "Error al registrar", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+// -------------------------------------------------------------------------------------------------
+    public void fn_Siguiente(View view)
+    {
+        i++;
+        mMedidorObjeto = mListaMedidores.get(i);
+
+        mSector.setText("Sector: " + mSectorObjeto.getNombre());
+        mCodigoMedidor.setText("Código de medidor: " + String.valueOf(mMedidorObjeto.getCodigoMedidor()));
+        mNombreCliente.setText("Nombre de cliente: " + mMedidorObjeto.getNombreCliente());
+        mLecturaAnterior.setText("Lectura anterior: " + String.valueOf(mMedidorObjeto.getLectura()));
+    }
+
+
+    public void fn_Anterior(View view)
+    {
+        i--;
+        mMedidorObjeto = mListaMedidores.get(i);
+
+        mSector.setText("Sector: " + mSectorObjeto.getNombre());
+        mCodigoMedidor.setText("Código de medidor: " + String.valueOf(mMedidorObjeto.getCodigoMedidor()));
+        mNombreCliente.setText("Nombre de cliente: " + mMedidorObjeto.getNombreCliente());
+        mLecturaAnterior.setText("Lectura anterior: " + String.valueOf(mMedidorObjeto.getLectura()));
+    }
+
+// -------------------------------------------------------------------------------------------------
+
+
+
+
+
 
 }

@@ -89,21 +89,20 @@ public class EditarMedidorActivity extends AppCompatActivity {
 
     public void fn_EditarMedidor(View v)
     {
+        try
+        {
 
-                try
-                {
+            mServicioMedidor.fn_ActualizarMedidor(mCodigoMedidor,mNombre.getText().toString(),
+                    Integer.parseInt(mLectura.getText().toString()),mEstado);
 
-                    mServicioMedidor.fn_ActualizarMedidor(mCodigoMedidor,mNombre.getText().toString(),Integer.parseInt(mLectura.getText().toString()),mEstado);
-
-                    Toast.makeText(this, "Editado: ", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Editado: ", Toast.LENGTH_SHORT).show();
 
 
-                }catch (Exception e)
-                {
-                    Toast.makeText(this, "Error al editar", Toast.LENGTH_SHORT).show();
-                }
-            }
-
+        }catch (Exception e)
+        {
+            Toast.makeText(this, "Error al editar", Toast.LENGTH_SHORT).show();
+        }
+    }
     //---------------------
 
     public String fn_ObtenerFecha()

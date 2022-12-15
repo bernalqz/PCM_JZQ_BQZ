@@ -38,7 +38,7 @@ public class cMedidorServicio {
 
     public cMedidor fn_BuscarMedidorPorCodigo(int _Codigo)
     {
-        cMedidor mMedidor = mRealm.where(cMedidor.class).equalTo("Secuencia",_Codigo).findFirst();
+        cMedidor mMedidor = mRealm.where(cMedidor.class).equalTo("CodigoMedidor",_Codigo).findFirst();
         return mMedidor;
     }
     // -------------------------****
@@ -149,11 +149,11 @@ public class cMedidorServicio {
         }
     }
 
-    public boolean fn_RegistrarLectura(int _CodigoSector, String _FechaLectura, int _Lectura)
+    public boolean fn_RegistrarLectura(int _CodigoMedidor, String _FechaLectura, int _Lectura)
     {
         try
         {
-            cMedidor mMedidor = mRealm.where(cMedidor.class).equalTo("CodigoSector",_CodigoSector).findFirst();
+            cMedidor mMedidor = fn_BuscarMedidorPorCodigo(_CodigoMedidor);
             if(mMedidor != null)
             {
                 mRealm.beginTransaction();
@@ -167,7 +167,7 @@ public class cMedidorServicio {
                 return false;
             }
         }
-        catch(Exception e)
+        catch (Exception ex)
         {
             return false;
         }

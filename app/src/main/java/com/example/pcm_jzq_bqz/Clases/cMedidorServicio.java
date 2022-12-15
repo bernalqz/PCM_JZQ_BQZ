@@ -147,7 +147,31 @@ public class cMedidorServicio {
         {
             return false;
         }
-    }    
+    }
 
-//    
+    public boolean fn_RegistrarLectura(int _CodigoSector, String _FechaLectura, int _Lectura)
+    {
+        try
+        {
+            cMedidor mMedidor = mRealm.where(cMedidor.class).equalTo("CodigoSector",_CodigoSector).findFirst();
+            if(mMedidor != null)
+            {
+                mRealm.beginTransaction();
+                mMedidor.setFechaLectura(_FechaLectura);
+                mMedidor.setLectura(_Lectura);
+                mRealm.commitTransaction();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        catch(Exception e)
+        {
+            return false;
+        }
+    }
+
+//
 }

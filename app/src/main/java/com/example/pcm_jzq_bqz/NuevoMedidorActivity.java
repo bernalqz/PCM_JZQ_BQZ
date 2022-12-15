@@ -10,7 +10,11 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 import com.example.pcm_jzq_bqz.Clases.cMedidorServicio;
 
@@ -18,7 +22,6 @@ import io.realm.Realm;
 
 public class NuevoMedidorActivity extends AppCompatActivity {
 
-    int Dia, Mes, Year;
     EditText mSector, mCliente;
     TextView mFecha;
     RadioButton mActivo, mInactivo;
@@ -34,7 +37,7 @@ public class NuevoMedidorActivity extends AppCompatActivity {
         mActivo = findViewById(R.id.rbeMedidorActivo);
         mInactivo = findViewById(R.id.rbeMedidorInactivo);
         mFecha = findViewById(R.id.tvFecha);
-        mFecha.setText(fn_ObtenerFecha());
+        mFecha.setText(getFecha());
         fn_CargarSharePreferences();
         fn_Inicializar();
         //
@@ -89,7 +92,7 @@ public class NuevoMedidorActivity extends AppCompatActivity {
                 try
                 {
                     int _CodigoSector = Integer.parseInt(mSector.getText().toString());
-                    String _Fecha = fn_ObtenerFecha();
+                    String _Fecha = getFecha();
 
                     cMedidorServicio mServicio = new cMedidorServicio(Realm.getDefaultInstance());
                     mServicio.fn_AgregarMedidor(_CodigoSector, _Fecha, mCliente.getText().toString(), mEstado);
@@ -111,14 +114,12 @@ public class NuevoMedidorActivity extends AppCompatActivity {
         mSector.setText(mCodigoObtenido);
     }
 
-    public String fn_ObtenerFecha()
+    private String getFecha()
     {
-        Calendar mFecha = Calendar.getInstance();
-        Dia = mFecha.get(Calendar.DAY_OF_MONTH);
-        Mes = mFecha.get(Calendar.MONTH);
-        Year = mFecha.get(Calendar.YEAR);
-        String mDate = Mes + "/" + Dia + "/" + Year;
-        return mDate;
+        Date c = Calendar.getInstance().getTime();
+        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy", Locale.getDefault());
+        String formattedDate = df.format(c);
+        return formattedDate.toString();
     }
 
 }

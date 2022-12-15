@@ -30,7 +30,7 @@ public class LecturasActivity extends AppCompatActivity {
     cSector mSectorObjeto = new cSector();
     int i = 0;
 
-    TextView mFecha, mSector, mCodigoMedidor, mConsecutivoMedidor;
+    TextView mFecha, mSector, mCodigoMedidor, mLecturaAnterior;
     EditText mLectura;
 
     @Override
@@ -41,9 +41,8 @@ public class LecturasActivity extends AppCompatActivity {
         mFecha = findViewById(R.id.tvLAFecha);
         mSector = findViewById(R.id.tvLASector);
         mCodigoMedidor = findViewById(R.id.tvLACodigoMedidor);
-        mConsecutivoMedidor = findViewById(R.id.tvLACodigoConsecutivo);
         mLectura = findViewById(R.id.txtLectura);
-
+        mLecturaAnterior = findViewById(R.id.tvLALecturaAnterior);
         mFecha.setText(getFecha());
         fn_TraerMedidores();
     }
@@ -66,7 +65,7 @@ public class LecturasActivity extends AppCompatActivity {
 
         mSector.setText("Sector: " + mSectorObjeto.getNombre());
         mCodigoMedidor.setText("Código de medidor: " + String.valueOf(mMedidorObjeto.getCodigoMedidor()));
-        mConsecutivoMedidor.setText("Consecutivo de medidor: " + String.valueOf(mMedidorObjeto.getSecuencia()));
+        mLecturaAnterior.setText("Lectura anterior: " + String.valueOf(mMedidorObjeto.getLectura()));
 
     }
 

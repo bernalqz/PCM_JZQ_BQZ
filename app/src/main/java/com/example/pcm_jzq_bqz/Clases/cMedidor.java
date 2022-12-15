@@ -20,6 +20,7 @@ public class cMedidor extends RealmObject {
         return NombreCliente;
     }
 
+
     public int getCodigo() {
         return CodigoMedidor;
     }

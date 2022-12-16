@@ -107,17 +107,6 @@ public class LecturasActivity extends AppCompatActivity {
     }
 
 // -------------------------------------------------------------------------------------------------
-    /*public void fn_Siguiente(View view)
-    {
-        i++;
-        mMedidorObjeto = mListaMedidores.get(i);
-
-        mSector.setText("Sector: " + mSectorObjeto.getNombre());
-        mCodigoMedidor.setText("Código de medidor: " + String.valueOf(mMedidorObjeto.getCodigoMedidor()));
-        mNombreCliente.setText("Nombre de cliente: " + mMedidorObjeto.getNombreCliente());
-        mLecturaAnterior.setText("Lectura anterior: " + String.valueOf(mMedidorObjeto.getLectura()));
-    }*/
-
     public void fn_Siguiente(View view)
     {
         i++;
@@ -136,13 +125,10 @@ public class LecturasActivity extends AppCompatActivity {
         }
     }
 
+    // ---------------------------------------------------------------------------------------------
     public void fn_Anterior(View view)
     {
-        if(i == 0)
-        {
-            Toast.makeText(this, "Este es el primer elemento", Toast.LENGTH_SHORT).show();
-        }
-        else
+        if(i > 0)
         {
             i--;
 
@@ -152,7 +138,11 @@ public class LecturasActivity extends AppCompatActivity {
             mNombreCliente.setText("Nombre de cliente: " + mMedidorObjeto.getNombreCliente());
             mLecturaAnterior.setText("Lectura anterior: " + String.valueOf(mMedidorObjeto.getLectura()));
         }
+
+        if(i == 0)
+        {
+            Toast.makeText(this, "Este es el primer elemento", Toast.LENGTH_SHORT).show();
+        }
     }
 // -------------------------------------------------------------------------------------------------
-
 }

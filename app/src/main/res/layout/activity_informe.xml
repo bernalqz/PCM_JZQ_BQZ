@@ -4,6 +4,71 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/nuevo_medidor_background"
     tools:context=".InformeActivity">
+    //
 
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="409dp"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.301"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.004">
+
+        <Button
+            android:id="@+id/btnInfSinLectura"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="5px"
+            android:layout_weight="1"
+            android:onClick="fn_CargarListaMedidoresSinLecturas"
+            android:text="Sin lectura" />
+
+        <Button
+            android:id="@+id/btnInfSalir"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="5px"
+            android:layout_weight="1"
+            android:onClick="fn_Regresar"
+            android:text="Salir" />
+
+        <Button
+            android:id="@+id/btnInfConLectura"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="5px"
+            android:layout_weight="1"
+            android:onClick="fn_CargarListaMedidoresConLecturas"
+            android:text="Con lectura" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <ListView
+                android:id="@+id/lstInforme"
+                android:layout_width="match_parent"
+                android:layout_height="650dp" />
+        </LinearLayout>
+    </ScrollView>
+
+
+    //
 </androidx.constraintlayout.widget.ConstraintLayout>

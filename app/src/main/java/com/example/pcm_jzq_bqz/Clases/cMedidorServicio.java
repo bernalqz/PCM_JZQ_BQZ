@@ -19,7 +19,23 @@ public class cMedidorServicio {
         RealmResults<cMedidor> mResultado = mRealm.where(cMedidor.class).equalTo("CodigoSector",_CodigoSector).findAll();
         return mRealm.copyFromRealm(mResultado);
     }
+//
+public List<cMedidor> fn_CargarListaMedidoresSinLectura()
+{
+    int ValLectura = 0;
+    RealmResults<cMedidor> mResultado = mRealm.where(cMedidor.class).equalTo("Lectura",ValLectura).findAll();
+    return mRealm.copyFromRealm(mResultado);
+}
+//
+public List<cMedidor> fn_CargarListaMedidoresConLectura()
+{
+    int ValLectura = 0;
+    RealmResults<cMedidor> mResultado = mRealm.where(cMedidor.class).notEqualTo("Lectura",ValLectura).findAll();
+    return mRealm.copyFromRealm(mResultado);
+}
 
+
+//
     private final static int fn_CalcularCodigoMedidor()
     {
         Realm mRealm = Realm.getDefaultInstance();
@@ -41,33 +57,39 @@ public class cMedidorServicio {
         cMedidor mMedidor = mRealm.where(cMedidor.class).equalTo("CodigoMedidor",_Codigo).findFirst();
         return mMedidor;
     }
-    // -------------------------****
-    public cMedidor fnBuscarMedidorPorSectoryCodigo(int _CodSector)
-    {
+
+    // -------------------------**** Esta funcion no se usa, con derechos de autor Benal ;)
+    Number mMedidormin = 1;
+    public cMedidor fnBuscarMedidorPorSectoryCodigo(int _CodSector) {
         Realm mRealm = Realm.getDefaultInstance();
-        cMedidor mResultado=null;
-        Number mMedidormin =1;
-
-        //mMedidormin = mRealm.where(cMedidor.class).min("Secuencia");
+        cMedidor mResultado = null;
 
 
+        cMedidor mMedidor;
+        do {
+            mMedidor = mRealm.where(cMedidor.class).equalTo("Secuencia", mMedidormin.intValue()).findFirst();
+            if (mMedidor.equals(null)) {
 
-        cMedidor mMedidor = mRealm.where(cMedidor.class).equalTo("Secuencia",mMedidormin.intValue()).findFirst();
+                mMedidormin = mMedidormin.intValue() + 1;
+            } else {
 
-        if((int)(mMedidor.getCodigoSector())==(_CodSector))
-        {mResultado=mMedidor;}
-        else
-        {
-            mMedidormin = mMedidormin.intValue() +1;
+                if ((int) (mMedidor.getCodigoSector()) == (_CodSector)) {
+                    mResultado = mMedidor;
+                    mMedidormin = mMedidormin.intValue() + 1;
 
+                } else {
+                    mMedidormin = mMedidormin.intValue() + 1;
+                }
+            }
         }
+        while ((mResultado != mMedidor) & (mMedidormin.intValue() < 100));
 
         return mResultado;
-
 
     }
 
     //--------------------------****
+
     public boolean fn_AgregarMedidor(int _CodigoSector, String _Fecha, String _Nombre, String _Estado)
     {
         try

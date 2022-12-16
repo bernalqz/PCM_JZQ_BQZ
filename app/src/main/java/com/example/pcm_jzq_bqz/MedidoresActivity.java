@@ -46,11 +46,13 @@ public class MedidoresActivity extends AppCompatActivity {
     public void onResume()
     {
         super.onResume();
+        //
         mposicion = -1;
         fn_CargarListaMedidores();
         fn_CargarMedidorSeleccionado();
+        //
     }
-
+    // ----------------
     private void fn_CargarListaMedidores()
     {
         int _CodigoSector = fn_CargarSharePreferences();

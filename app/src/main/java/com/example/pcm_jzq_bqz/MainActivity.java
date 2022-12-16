@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
     // ----------------
     public void frmIrAInformeAtivity(View v)
     {
-        Intent mPantalla = new Intent(this,InformeActivity.class);
+        Intent mPantalla = new Intent(this, InformeActivity.class);
         startActivity(mPantalla);
     }
     // ----------------------------------

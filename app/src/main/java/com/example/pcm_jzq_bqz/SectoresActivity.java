@@ -20,12 +20,12 @@ import java.util.List;
 import io.realm.Realm;
 
 public class SectoresActivity extends AppCompatActivity {
-    //
+    //------------------------------------ VARIABLES GLOBALES --------------------------------------
     cSectorServicio mServicio = new cSectorServicio(Realm.getDefaultInstance());
     List<cSector> mListaSectores;
     ListView mlstListaSectores;
     int mposicion = -1;
-    //
+    //----------------------------------------------------------------------------------------------
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,16 +35,15 @@ public class SectoresActivity extends AppCompatActivity {
         fn_CargarListaSectores();
         fn_CargarSectorSeleccionado();
     //
-
     }
-// -----------------
+    //----------------------------------------------------------------------------------------------
     @Override
     public void onResume()
     {
         super.onResume();
         fn_CargarListaSectores();
     }
-// ----------------------------
+    //----------------------------------------------------------------------------------------------
     private void fn_CargarSectorSeleccionado()
     {
         mlstListaSectores.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -53,13 +52,12 @@ public class SectoresActivity extends AppCompatActivity {
                 mposicion = posicion;
                 cSector mSector = new cSector();
                 mSector = mServicio.fn_BuscarSectorPorCodigo(posicion+1);
-                Toast.makeText(SectoresActivity.this, "Sector " + mSector.getNombre() + " seleccionado" ,
-                        Toast.LENGTH_SHORT).show();
+                Toast.makeText(SectoresActivity.this, "Sector " + mSector.getNombre() +
+                        " seleccionado" , Toast.LENGTH_SHORT).show();
             }
         });
     }
-
-
+    //----------------------------------------------------------------------------------------------
     private void fn_CargarListaSectores()
     {
         mListaSectores = mServicio.fn_ListaSectores();
@@ -67,21 +65,18 @@ public class SectoresActivity extends AppCompatActivity {
         mlstListaSectores.setAdapter(mSectorAdaptador);
         mposicion = -1;
     }
-//----------------------------
-
+    //----------------------------------------------------------------------------------------------
     public void fn_Regresar(View view)
     {
         this.finish();
     }
-
-// -----------------------------
+    //----------------------------------------------------------------------------------------------
     public void fn_CargarNuevoSectorActivity(View view)
     {
         Intent mPantalla = new Intent(SectoresActivity.this,NuevoSectorActivity.class);
         startActivity(mPantalla);
     }
-//-----------------------------
-
+    //----------------------------------------------------------------------------------------------
     public void fn_EditarSectorActivity(View view) {
         if (mposicion != -1) {
             Intent mEditarSector = new Intent(SectoresActivity.this, EditarSectorActivity.class);
@@ -92,11 +87,8 @@ public class SectoresActivity extends AppCompatActivity {
             Toast.makeText(SectoresActivity.this, "Debe de seleccionar un Sector",
                     Toast.LENGTH_SHORT).show();
         }
-
     }
-
-// -----------------------------
-
+    //----------------------------------------------------------------------------------------------
     public void BorrarSector(View v)
     {
         if (mposicion!= -1) {
@@ -110,8 +102,7 @@ public class SectoresActivity extends AppCompatActivity {
             Toast.makeText(SectoresActivity.this, "Debe de seleccionar un Sector",
                     Toast.LENGTH_SHORT).show();
         }
-
     }
-
-// -----------------------------
+    //----------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 }

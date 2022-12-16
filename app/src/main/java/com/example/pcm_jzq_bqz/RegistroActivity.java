@@ -13,8 +13,9 @@ import io.realm.Realm;
 
 public class RegistroActivity extends AppCompatActivity {
 
+    //--------------------------------------- VARIABLES GLOBALES -----------------------------------
     EditText mNombre, mCorreo, mContrasena, mTelefono, mEdad, mVerificacion;
-
+    //----------------------------------------------------------------------------------------------
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,12 +30,12 @@ public class RegistroActivity extends AppCompatActivity {
 
         fn_Inicializar();
     }
-
+    //----------------------------------------------------------------------------------------------
     public void fn_Regresar(View view)
     {
         this.finish();
     }
-
+    //----------------------------------------------------------------------------------------------
     private void fn_Inicializar()
     {
         mNombre.setText("");
@@ -44,7 +45,7 @@ public class RegistroActivity extends AppCompatActivity {
         mTelefono.setText("");
         mEdad.setText("");
     }
-
+    //----------------------------------------------------------------------------------------------
     public void fn_RegistrarUsuario(View view)
     {
        if(mContrasena.getText().toString().trim().equals(mVerificacion.getText().toString().trim()))
@@ -63,16 +64,13 @@ public class RegistroActivity extends AppCompatActivity {
                Toast.makeText(this, "Edad no permitida", Toast.LENGTH_SHORT).show();
                Toast.makeText(this, "Usuario no agregado", Toast.LENGTH_SHORT).show();
            }
-
        }
        else
        {
            Toast.makeText(this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
            Toast.makeText(this, "Revise los Datos Introducidos", Toast.LENGTH_SHORT).show();
        }
-
     }
-
-
-
+    //----------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 }

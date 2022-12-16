@@ -23,13 +23,14 @@ import java.util.List;
 import io.realm.Realm;
 
 public class MedidoresActivity extends AppCompatActivity {
-    //
+
+    //---------------------------------- VARIABLES GLOBALES ----------------------------------------
     cMedidorServicio mServicio = new cMedidorServicio(Realm.getDefaultInstance());
     cMedidor mMedidor = new cMedidor();
     List<cMedidor> mListaMedidores;
     ListView mlstListaMedidores;
     int mposicion = -1;
-    //
+    //----------------------------------------------------------------------------------------------
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +42,7 @@ public class MedidoresActivity extends AppCompatActivity {
         fn_CargarMedidorSeleccionado();
     //
     }
-
+    //----------------------------------------------------------------------------------------------
     @Override
     public void onResume()
     {
@@ -52,7 +53,7 @@ public class MedidoresActivity extends AppCompatActivity {
         fn_CargarMedidorSeleccionado();
         //
     }
-    // ----------------
+    //----------------------------------------------------------------------------------------------
     private void fn_CargarListaMedidores()
     {
         int _CodigoSector = fn_CargarSharePreferences();
@@ -61,21 +62,18 @@ public class MedidoresActivity extends AppCompatActivity {
                 mListaMedidores, R.layout.adaptador_medidores);
         mlstListaMedidores.setAdapter(mAdaptador);
     }
-    // ----------------
+    //----------------------------------------------------------------------------------------------
     public void fn_Regresar(View view)
     {
         this.finish();
     }
-
-    // ----------------------------------
+    //----------------------------------------------------------------------------------------------
     public void frmIrAgregarMedidor(View v)
     {
         Intent mPantalla = new Intent(this, NuevoMedidorActivity.class);
         startActivity(mPantalla);
     }
-    // ------------------------------------
-
-
+    //----------------------------------------------------------------------------------------------
     public void frmIrEditarMedidor(View v) {
         if (mposicion != -1) {
             Intent mEditarMedidor = new Intent(MedidoresActivity.this, EditarMedidorActivity.class);
@@ -88,8 +86,7 @@ public class MedidoresActivity extends AppCompatActivity {
                     Toast.LENGTH_SHORT).show();
         }
     }
-
-    // ------------------------------------
+    //----------------------------------------------------------------------------------------------
     private int fn_CargarSharePreferences()
     {
         SharedPreferences mCodigo = getSharedPreferences("CodigoSector", Context.MODE_PRIVATE);
@@ -98,12 +95,9 @@ public class MedidoresActivity extends AppCompatActivity {
 
         return mCodigo01;
     }
-    //-----------------------
-
+    //----------------------------------------------------------------------------------------------
     public void fn_BorrarMedidor(View v)
     {
-
-
         if (mposicion!= -1) {
             cMedidor mMedidor = mListaMedidores.get(mposicion);
             mServicio.fn_EliminarMedidor(mMedidor.getCodigoMedidor());
@@ -115,10 +109,8 @@ public class MedidoresActivity extends AppCompatActivity {
             Toast.makeText(MedidoresActivity.this, "Debe de seleccionar un Medidor",
                     Toast.LENGTH_SHORT).show();
         }
-
     }
-
-    //------------------------
+    //----------------------------------------------------------------------------------------------
     private void fn_CargarMedidorSeleccionado()
     {
         mlstListaMedidores.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -132,8 +124,6 @@ public class MedidoresActivity extends AppCompatActivity {
             }
         });
     }
-    // -----------------------
-
-
-
+    //----------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 }

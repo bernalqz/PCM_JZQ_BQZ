@@ -8,18 +8,18 @@ import io.realm.RealmResults;
 public class cSectorServicio {
 
     private Realm mRealm;
-
+    //----------------------------------------------------------------------------------------------
     public cSectorServicio(Realm _Realm)
     {
         this.mRealm = _Realm;
     } //Constructor
-
+    //----------------------------------------------------------------------------------------------
     public List<cSector> fn_ListaSectores()
     {
         RealmResults<cSector> mResultado = mRealm.where(cSector.class).findAll();
         return mRealm.copyFromRealm(mResultado);
     }
-
+    //----------------------------------------------------------------------------------------------
     private final static int fn_CalcularCodigoSector()
     {
         Realm mRealm = Realm.getDefaultInstance();
@@ -35,13 +35,13 @@ public class cSectorServicio {
         }
         return mCodigoNuevo;
     }
-
+    //----------------------------------------------------------------------------------------------
     public cSector fn_BuscarSectorPorCodigo(int _Codigo)
     {
         cSector mSector = mRealm.where(cSector.class).equalTo("CodigoSector",_Codigo).findFirst();
         return mSector;
     }
-
+    //----------------------------------------------------------------------------------------------
     public boolean fn_AgregarSector(String _Nombre, String _Canton)
     {
         try
@@ -59,7 +59,7 @@ public class cSectorServicio {
             return false;
         }
     }
-
+    //----------------------------------------------------------------------------------------------
     public boolean fn_ActualizarSector(int _CodigoSector, String _Nombre, String _Canton)
     {
         try
@@ -82,9 +82,8 @@ public class cSectorServicio {
         {
             return false;
         }
-
     }
-
+    //----------------------------------------------------------------------------------------------
     public boolean fn_EliminarSector(int _CodigoSector)
     {
         try
@@ -106,7 +105,7 @@ public class cSectorServicio {
         {
             return false;
         }
-
     }
-
+    //----------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 }

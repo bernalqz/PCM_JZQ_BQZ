@@ -13,8 +13,9 @@ import io.realm.Realm;
 
 public class NuevoSectorActivity extends AppCompatActivity {
 
+    //----------------------------------- VARIABLES GLOBALES ---------------------------------------
     TextView mNombre, mCanton;
-
+    //----------------------------------------------------------------------------------------------
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,19 +26,19 @@ public class NuevoSectorActivity extends AppCompatActivity {
 
         fn_Inicializar();
     }
-
+    //----------------------------------------------------------------------------------------------
     public void fn_Regresar(View view)
     {
         this.finish();
         fn_Inicializar();
     }
-
+    //----------------------------------------------------------------------------------------------
     private void fn_Inicializar()
     {
         mNombre.setText("");
         mCanton.setText("");
     }
-
+    //----------------------------------------------------------------------------------------------
     public void fn_AgregarSector(View view)
     {
         if(mNombre.getText().toString().trim().equals(""))
@@ -74,14 +75,6 @@ public class NuevoSectorActivity extends AppCompatActivity {
         }
 
     }
-
-
-
-
-
-
-
-
-
-
+    //----------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 }

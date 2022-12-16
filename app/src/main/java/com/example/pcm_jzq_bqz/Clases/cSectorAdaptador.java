@@ -12,32 +12,34 @@ import com.example.pcm_jzq_bqz.R;
 import java.util.List;
 
 public class cSectorAdaptador extends BaseAdapter {
+
+    //-------------------------------- VARIABLES GLOBALES ------------------------------------------
     private Context context;
     private List<cSector> mLista;
     private int layout;
-
+    //----------------------------------------------------------------------------------------------
     public cSectorAdaptador(Context _context, List<cSector> _Lista, int _layout)
     {
         this.context = _context;
         this.mLista = _Lista;
         this.layout = _layout;
     }
-
+    //----------------------------------------------------------------------------------------------
     @Override
     public int getCount() {
         return mLista.size();
     }
-
+    //----------------------------------------------------------------------------------------------
     @Override
     public Object getItem(int i) {
         return mLista.get(i);
     }
-
+    //----------------------------------------------------------------------------------------------
     @Override
     public long getItemId(int i) {
         return i;
     }
-
+    //----------------------------------------------------------------------------------------------
     @Override
     public View getView(int posicion, View convertView, ViewGroup parent) {
         ViewHolder vh;
@@ -62,12 +64,13 @@ public class cSectorAdaptador extends BaseAdapter {
         vh.Canton.setText(mSector.getCanton());
         return convertView;
     }
-
+    //----------------------------------------------------------------------------------------------
     public class ViewHolder
     {
         TextView Codigo;
         TextView Nombre;
         TextView Canton;
     }
-
+    //----------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 }

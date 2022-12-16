@@ -20,35 +20,31 @@ import java.util.List;
 import io.realm.Realm;
 
 public class SectoresMedidoresActivity extends AppCompatActivity {
-    //
+
+    //------------------------------------ VARIABLES GLOBALES --------------------------------------
     cSectorServicio mServicio = new cSectorServicio(Realm.getDefaultInstance());
     List<cSector> mListaSectores;
     ListView mlstListaSectores;
     int mposicion;
-    //
-
+    //----------------------------------------------------------------------------------------------
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sectores_medidores);
-
         //
         mlstListaSectores = findViewById(R.id.lstaSectores);
         fn_CargarListaSectores();
         fn_CargarSectorSeleccionado();
         //
-
     }
-
-    // -------------------
+    //----------------------------------------------------------------------------------------------
     @Override
     public void onResume()
     {
         super.onResume();
         fn_CargarListaSectores();
     }
-    // -----------------------
-
+    //----------------------------------------------------------------------------------------------
     private void fn_CargarListaSectores()
     {
         mListaSectores = mServicio.fn_ListaSectores();
@@ -56,13 +52,12 @@ public class SectoresMedidoresActivity extends AppCompatActivity {
         mlstListaSectores.setAdapter(mSectorAdaptador);
         mposicion = -1;
     }
-    //----------------------------
-
+    //----------------------------------------------------------------------------------------------
     public void fn_RegresarAmain(View view)
     {
         this.finish();
     }
-    // -------------------------
+    //----------------------------------------------------------------------------------------------
     private void fn_CargarSectorSeleccionado()
     {
         mlstListaSectores.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -93,6 +88,6 @@ public class SectoresMedidoresActivity extends AppCompatActivity {
             }
         });
     }
-    //--------------------------------------------------
-
+    //----------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 }

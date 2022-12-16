@@ -20,10 +20,12 @@ import java.util.List;
 import io.realm.Realm;
 
 public class LecturaMedidoresActivity extends AppCompatActivity {
+
+    //---------------------------------- VARIABLES GLOBALES ----------------------------------------
     cSectorServicio mServicio = new cSectorServicio(Realm.getDefaultInstance());
     List<cSector> mListaSectores;
     ListView mlstListaSectores;
-
+    //----------------------------------------------------------------------------------------------
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +36,7 @@ public class LecturaMedidoresActivity extends AppCompatActivity {
         fn_CargarListadeSectores();
         fn_CargarSectorSeleccionado();
     }
-
+    //----------------------------------------------------------------------------------------------
     @Override
     public void onResume()
     {
@@ -42,14 +44,14 @@ public class LecturaMedidoresActivity extends AppCompatActivity {
         fn_CargarListadeSectores();
         fn_CargarSectorSeleccionado();
     }
-
+    //----------------------------------------------------------------------------------------------
     public void fn_CargarListadeSectores()
     {
         mListaSectores = mServicio.fn_ListaSectores();
         cSectorAdaptador mAdaptador = new cSectorAdaptador(this,mListaSectores,R.layout.adaptador_sectores);
         mlstListaSectores.setAdapter(mAdaptador);
     }
-
+    //----------------------------------------------------------------------------------------------
     private void fn_CargarSectorSeleccionado()
     {
         mlstListaSectores.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -80,9 +82,11 @@ public class LecturaMedidoresActivity extends AppCompatActivity {
             }
         });
     }
-
+    //----------------------------------------------------------------------------------------------
     public void fn_Regresar(View view)
     {
         this.finish();
     }
+    //----------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 }

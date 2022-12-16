@@ -15,8 +15,9 @@ import io.realm.RealmConfiguration;
 
 public class LoginActivity extends AppCompatActivity {
 
+    //---------------------------------- VARIABLES GLOBALES ----------------------------------------
     EditText mUsuario, mContrasena;
-
+    //----------------------------------------------------------------------------------------------
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,20 +35,20 @@ public class LoginActivity extends AppCompatActivity {
         mUsuario = findViewById(R.id.txtLoginActivityUsuario);
         mContrasena = findViewById(R.id.txtLoginActivityContrasena);
     }
-
+    //----------------------------------------------------------------------------------------------
     /*@Override
     public void onResume()
     {
         super.onResume();
         fn_Inicializar();
     }*/
-
+    //----------------------------------------------------------------------------------------------
     private void fn_Inicializar()
     {
         mUsuario.setText("");
         mContrasena.setText("");
     }
-
+    //----------------------------------------------------------------------------------------------
     private void fn_LoginSharePreferences()
     {
         String Usuario = "Admin12345";
@@ -59,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
         mEditor.putString("Contrasena",Password);
         mEditor.commit();
     }
-
+    //----------------------------------------------------------------------------------------------
     private String fn_DatosRegistro()
     {
         String Password = "";
@@ -72,13 +73,13 @@ public class LoginActivity extends AppCompatActivity {
         }
         return Password;
     }
-
+    //----------------------------------------------------------------------------------------------
     public void fn_Registro(View view)
     {
         Intent mPantalla = new Intent(this,RegistroActivity.class);
         startActivity(mPantalla);
     }
-
+    //----------------------------------------------------------------------------------------------
     public void fn_VerificarUsuario(View view)
     {
         try
@@ -111,7 +112,7 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(this, "Error al verificar", Toast.LENGTH_SHORT).show();
         }
     }
-
+    //----------------------------------------------------------------------------------------------
     private void fn_Verificar()
     {
         SharedPreferences mPreferencias = getSharedPreferences("DatosLogin", Context.MODE_PRIVATE);
@@ -127,7 +128,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         }
     }
-
+    //----------------------------------------------------------------------------------------------
     public void fn_CargarSharePreferences(View view)
     {
         SharedPreferences mPreferencias = getSharedPreferences("DatosLogin", Context.MODE_PRIVATE);
@@ -138,5 +139,6 @@ public class LoginActivity extends AppCompatActivity {
         mContrasena.setText(mPassword02);
         Toast.makeText(this, "Contraseña: " + mPassword02, Toast.LENGTH_SHORT).show();
     }
-
+    //----------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 }

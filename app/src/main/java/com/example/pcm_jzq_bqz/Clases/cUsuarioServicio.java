@@ -3,13 +3,14 @@ package com.example.pcm_jzq_bqz.Clases;
 import io.realm.Realm;
 
 public class cUsuarioServicio {
-    private Realm mRealm; //Es como el conector a la Base de Datos
 
+    private Realm mRealm; //Es como el conector a la Base de Datos
+    //----------------------------------------------------------------------------------------------
     public cUsuarioServicio(Realm _Realm)
     {
         this.mRealm = _Realm;
     }
-
+    //----------------------------------------------------------------------------------------------
     private final static int fn_CalcularCodigoUsuario()
     {
         Realm mRealm = Realm.getDefaultInstance();
@@ -25,7 +26,7 @@ public class cUsuarioServicio {
         }
         return mCodigoNuevo;
     }
-
+    //----------------------------------------------------------------------------------------------
     public boolean fn_AgregarUsuario(String _Nombre, String _Correo, String _Contrasena, String _Telefono, int _Edad)
     {
         try
@@ -47,7 +48,7 @@ public class cUsuarioServicio {
             return false;
         }
     }
-
+    //----------------------------------------------------------------------------------------------
     public void fn_VerificarUsuario(String _Usuario, String _Password)
     {
         cUsuario mUsuarioDB = new cUsuario();
@@ -60,29 +61,25 @@ public class cUsuarioServicio {
 
             }
         }
-
     }
-
-
-
-
-
+    //----------------------------------------------------------------------------------------------
     public cUsuario fn_BuscarUsuarioPorNombre(String _Nombre)
     {
         cUsuario mUsuario = mRealm.where(cUsuario.class).equalTo("Nombre",_Nombre).findFirst();
         return mUsuario;
     }
-
+    //----------------------------------------------------------------------------------------------
     public cUsuario fn_BuscarUsuarioPorCorreo(String _Correo)
     {
         cUsuario mUsuario = mRealm.where(cUsuario.class).equalTo("Correo",_Correo).findFirst();
         return mUsuario;
     }
-
+    //----------------------------------------------------------------------------------------------
     public cUsuario fn_BuscarUsuarioPorContrasena(String _Contrasena)
     {
         cUsuario mUsuario = mRealm.where(cUsuario.class).equalTo("Contrasena",_Contrasena).findFirst();
         return mUsuario;
     }
-
+    //----------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 }

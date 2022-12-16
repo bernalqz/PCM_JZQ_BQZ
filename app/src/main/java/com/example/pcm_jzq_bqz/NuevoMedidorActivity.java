@@ -22,10 +22,11 @@ import io.realm.Realm;
 
 public class NuevoMedidorActivity extends AppCompatActivity {
 
+    //-------------------------------- VARIABLES GLOBALES ------------------------------------------
     EditText mSector, mCliente;
     TextView mFecha;
     RadioButton mActivo, mInactivo;
-
+    //----------------------------------------------------------------------------------------------
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,29 +43,26 @@ public class NuevoMedidorActivity extends AppCompatActivity {
         fn_Inicializar();
         //
     }
-
+    //----------------------------------------------------------------------------------------------
     @Override
     public void onResume()
     {
         super.onResume();
         fn_CargarSharePreferences();
     }
-
+    //----------------------------------------------------------------------------------------------
     private void fn_Inicializar()
     {
         mCliente.setText("");
         mActivo.setChecked(true);
         mInactivo.setChecked(false);
     }
-
-    //
-
+    //----------------------------------------------------------------------------------------------
     public void fn_Regresar(View view)
     {
         this.finish();
     }
-
-    //
+    //----------------------------------------------------------------------------------------------
     public void fn_AgregarMedidor(View view)
     {
         if(mSector.getText().equals(""))
@@ -106,14 +104,14 @@ public class NuevoMedidorActivity extends AppCompatActivity {
             }
         }
     }
-
+    //----------------------------------------------------------------------------------------------
     private void fn_CargarSharePreferences()
     {
         SharedPreferences mCodigo = getSharedPreferences("CodigoSector", Context.MODE_PRIVATE);
         String mCodigoObtenido = mCodigo.getString("Codigo", "Sector nulo");
         mSector.setText(mCodigoObtenido);
     }
-
+    //----------------------------------------------------------------------------------------------
     private String getFecha()
     {
         Date c = Calendar.getInstance().getTime();
@@ -121,5 +119,6 @@ public class NuevoMedidorActivity extends AppCompatActivity {
         String formattedDate = df.format(c);
         return formattedDate.toString();
     }
-
+    //----------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 }

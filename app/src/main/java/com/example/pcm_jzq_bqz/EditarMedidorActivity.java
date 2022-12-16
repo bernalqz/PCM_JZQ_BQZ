@@ -11,8 +11,6 @@ import android.widget.Toast;
 
 import com.example.pcm_jzq_bqz.Clases.cMedidor;
 import com.example.pcm_jzq_bqz.Clases.cMedidorServicio;
-import com.example.pcm_jzq_bqz.Clases.cSector;
-import com.example.pcm_jzq_bqz.Clases.cSectorServicio;
 
 import java.util.Calendar;
 
@@ -20,8 +18,7 @@ import io.realm.Realm;
 
 public class EditarMedidorActivity extends AppCompatActivity {
 
-    //Variables globales
-
+    //------------------------------------- VARIABLES GLOBALES -------------------------------------
     cMedidor mMedidor;
     cMedidorServicio mServicioMedidor = new cMedidorServicio(Realm.getDefaultInstance());
     EditText mNombre, mNumeroMedidor, mLectura, mSector;
@@ -29,7 +26,7 @@ public class EditarMedidorActivity extends AppCompatActivity {
     String mEstado;
     int Dia, Mes, Year, mCodigoMedidor;
     RadioButton mActivo, mInactivo;
-    //
+    //----------------------------------------------------------------------------------------------
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,20 +43,17 @@ public class EditarMedidorActivity extends AppCompatActivity {
         //
     }
 
-    // ---------------------
+    //----------------------------------------------------------------------------------------------
     @Override
     public void onResume()
     {
         super.onResume();
     }
-    // ------------------
-
+    //----------------------------------------------------------------------------------------------
     public void fn_Regresar(View view) {
         this.finish();
     }
-
-    // -------------------
-
+    //----------------------------------------------------------------------------------------------
     private void LeerPutExtra() {
         Bundle mBundle = getIntent().getExtras();
         if (mBundle != null) {
@@ -80,46 +74,30 @@ public class EditarMedidorActivity extends AppCompatActivity {
                 mInactivo.setChecked(true);}
              }
         }
-
-
- // ----------------
-
-
-
-
+    //----------------------------------------------------------------------------------------------
     public void fn_EditarMedidor(View v)
     {
         try
         {
-
             mServicioMedidor.fn_ActualizarMedidor(mCodigoMedidor,mNombre.getText().toString(),
                     Integer.parseInt(mLectura.getText().toString()),mEstado);
-
             Toast.makeText(this, "Editado: ", Toast.LENGTH_SHORT).show();
-
-
-        }catch (Exception e)
+        }
+        catch (Exception e)
         {
             Toast.makeText(this, "Error al editar", Toast.LENGTH_SHORT).show();
         }
     }
-    //---------------------
-
+    //----------------------------------------------------------------------------------------------
     public String fn_ObtenerFecha()
-{
-    Calendar mFecha = Calendar.getInstance();
-    Dia = mFecha.get(Calendar.DAY_OF_MONTH);
-    Mes = mFecha.get(Calendar.MONTH);
-    Year = mFecha.get(Calendar.YEAR);
-    String mDate = Mes + "/" + Dia + "/" + Year;
-    return mDate;
-}
-
-
-    //----------------- Integer.getInteger(mLectura.getText().toString())
-
-
-
-
-
+    {
+        Calendar mFecha = Calendar.getInstance();
+        Dia = mFecha.get(Calendar.DAY_OF_MONTH);
+        Mes = mFecha.get(Calendar.MONTH);
+        Year = mFecha.get(Calendar.YEAR);
+        String mDate = Mes + "/" + Dia + "/" + Year;
+        return mDate;
+    }
+    //----------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 }

@@ -22,49 +22,43 @@ import io.realm.Realm;
 
 public class InformeActivity extends AppCompatActivity {
 
-    //
+    //---------------------------------- VARIABLES GLOBALES ----------------------------------------
     cMedidorServicio mServicio = new cMedidorServicio(Realm.getDefaultInstance());
     List<cMedidor> mListaMedidores;
     ListView mlstListaMedidores;
     int mposicion;
-    //
-
+    //----------------------------------------------------------------------------------------------
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_informe);
 
-        //
         mlstListaMedidores = findViewById(R.id.lstInforme);
         fn_CargarMedidorSeleccionado();
-        //
     }
-//
-// ----------------
+    //----------------------------------------------------------------------------------------------
     public void fn_CargarListaMedidoresSinLecturas(View view)
     {
-
-    mListaMedidores = mServicio.fn_CargarListaMedidoresSinLectura();
-    cMedidoresAdaptador mAdaptador = new cMedidoresAdaptador(InformeActivity.this,
+        mListaMedidores = mServicio.fn_CargarListaMedidoresSinLectura();
+        cMedidoresAdaptador mAdaptador = new cMedidoresAdaptador(InformeActivity.this,
             mListaMedidores, R.layout.adaptador_medidores);
-    mlstListaMedidores.setAdapter(mAdaptador);
+        mlstListaMedidores.setAdapter(mAdaptador);
     }
-    // ----------------
+    //----------------------------------------------------------------------------------------------
     public void fn_CargarListaMedidoresConLecturas(View view)
     {
-
         mListaMedidores = mServicio.fn_CargarListaMedidoresConLectura();
         cMedidoresAdaptador mAdaptador = new cMedidoresAdaptador(InformeActivity.this,
                 mListaMedidores, R.layout.adaptador_medidores);
         mlstListaMedidores.setAdapter(mAdaptador);
     }
-    //-----------------
+    //----------------------------------------------------------------------------------------------
     public void fn_Regresar(View view)
     {
         this.finish();
     }
-    // -------------
- private void fn_CargarMedidorSeleccionado()
+    //----------------------------------------------------------------------------------------------
+    private void fn_CargarMedidorSeleccionado()
     {
         mlstListaMedidores.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -77,6 +71,6 @@ public class InformeActivity extends AppCompatActivity {
             }
         });
     }
-
-    // ------------
+    //----------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 }

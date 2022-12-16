@@ -8,34 +8,32 @@ import io.realm.RealmResults;
 public class cMedidorServicio {
 
     private Realm mRealm;
-
+    // ---------------------------------------------------------------------------------------------
     public cMedidorServicio(Realm _Realm)
     {
         this.mRealm = _Realm;
     }
-//
+    // ---------------------------------------------------------------------------------------------
     public List<cMedidor> fn_CargarListaMedidores(int _CodigoSector)
     {
         RealmResults<cMedidor> mResultado = mRealm.where(cMedidor.class).equalTo("CodigoSector",_CodigoSector).findAll();
         return mRealm.copyFromRealm(mResultado);
     }
-//
-public List<cMedidor> fn_CargarListaMedidoresSinLectura()
-{
-    int ValLectura = 0;
-    RealmResults<cMedidor> mResultado = mRealm.where(cMedidor.class).equalTo("Lectura",ValLectura).findAll();
-    return mRealm.copyFromRealm(mResultado);
-}
-//
-public List<cMedidor> fn_CargarListaMedidoresConLectura()
-{
-    int ValLectura = 0;
-    RealmResults<cMedidor> mResultado = mRealm.where(cMedidor.class).notEqualTo("Lectura",ValLectura).findAll();
-    return mRealm.copyFromRealm(mResultado);
-}
-
-
-//
+    // ---------------------------------------------------------------------------------------------
+    public List<cMedidor> fn_CargarListaMedidoresSinLectura()
+    {
+        int ValLectura = 0;
+        RealmResults<cMedidor> mResultado = mRealm.where(cMedidor.class).equalTo("Lectura",ValLectura).findAll();
+        return mRealm.copyFromRealm(mResultado);
+    }
+    // ---------------------------------------------------------------------------------------------
+    public List<cMedidor> fn_CargarListaMedidoresConLectura()
+    {
+        int ValLectura = 0;
+        RealmResults<cMedidor> mResultado = mRealm.where(cMedidor.class).notEqualTo("Lectura",ValLectura).findAll();
+        return mRealm.copyFromRealm(mResultado);
+    }
+    // ---------------------------------------------------------------------------------------------
     private final static int fn_CalcularCodigoMedidor()
     {
         Realm mRealm = Realm.getDefaultInstance();
@@ -51,14 +49,13 @@ public List<cMedidor> fn_CargarListaMedidoresConLectura()
         }
         return mCodigoNuevo;
     }
-
+    // ---------------------------------------------------------------------------------------------
     public cMedidor fn_BuscarMedidorPorCodigo(int _Codigo)
     {
         cMedidor mMedidor = mRealm.where(cMedidor.class).equalTo("CodigoMedidor",_Codigo).findFirst();
         return mMedidor;
     }
-
-    // -------------------------**** Esta funcion no se usa, con derechos de autor Benal ;)
+    // -------------------------**** Esta funcion no se usa, con derechos de autor Bernal ;)
     Number mMedidormin = 1;
     public cMedidor fnBuscarMedidorPorSectoryCodigo(int _CodSector) {
         Realm mRealm = Realm.getDefaultInstance();
@@ -87,9 +84,7 @@ public List<cMedidor> fn_CargarListaMedidoresConLectura()
         return mResultado;
 
     }
-
-    //--------------------------****
-
+    // ---------------------------------------------------------------------------------------------
     public boolean fn_AgregarMedidor(int _CodigoSector, String _Fecha, String _Nombre, String _Estado)
     {
         try
@@ -113,7 +108,7 @@ public List<cMedidor> fn_CargarListaMedidoresConLectura()
             return false;
         }
     }
-
+    //----------------------------------------------------------------------------------------------
     public boolean fn_ActualizarMedidor(int _CodigoMedidor, String _Nombre,int _Lectura, String _Estado )
     {
         try
@@ -139,15 +134,13 @@ public List<cMedidor> fn_CargarListaMedidoresConLectura()
         }
 
     }
-//----------------
-
+    // ---------------------------------------------------------------------------------------------
     public cMedidor buscarMedidorXNombre(String _Nombre)
     {
         cMedidor mMedidor = mRealm.where(cMedidor.class).equalTo("NombreCliente",_Nombre).findFirst();
         return mMedidor;
     }
-
- //----------------
+    // ---------------------------------------------------------------------------------------------
     public boolean fn_EliminarMedidor(int _CodigoMedidor)
     {
         try
@@ -170,7 +163,7 @@ public List<cMedidor> fn_CargarListaMedidoresConLectura()
             return false;
         }
     }
-
+    // ---------------------------------------------------------------------------------------------
     public boolean fn_RegistrarLectura(int _CodigoMedidor, String _FechaLectura, int _Lectura)
     {
         try
@@ -194,6 +187,6 @@ public List<cMedidor> fn_CargarListaMedidoresConLectura()
             return false;
         }
     }
-
-//
+    // ---------------------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------------------------
 }

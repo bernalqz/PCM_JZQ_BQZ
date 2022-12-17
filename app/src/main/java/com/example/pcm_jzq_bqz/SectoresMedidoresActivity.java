@@ -50,7 +50,7 @@ public class SectoresMedidoresActivity extends AppCompatActivity {
         mListaSectores = mServicio.fn_ListaSectores();
         cSectorAdaptador mSectorAdaptador = new cSectorAdaptador(this,mListaSectores,R.layout.adaptador_sectores);
         mlstListaSectores.setAdapter(mSectorAdaptador);
-        mposicion = -1;
+
     }
     //----------------------------------------------------------------------------------------------
     public void fn_RegresarAmain(View view)
@@ -64,26 +64,24 @@ public class SectoresMedidoresActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int posicion, long l) {
                 cSector mSector = new cSector();
-                mSector = mServicio.fn_BuscarSectorPorCodigo(posicion+1);
-                String CodigoSector = String.valueOf(mSector.getCodigoSector());
+                mSector = mServicio.fn_BuscarSectorPorNombre(mlstListaSectores.getItemAtPosition(posicion).toString());
+                mposicion = mSector.getCodigoSector();
+                //String CodigoSector = String.valueOf(mSector.getCodigoSector());
                 String mMensaje = "Elemento seleccionado: " + mSector.getNombre();
+
                 Toast.makeText(SectoresMedidoresActivity.this, mMensaje, Toast.LENGTH_SHORT).show();
 
                 SharedPreferences mCodigo = getSharedPreferences("CodigoSector", Context.MODE_PRIVATE);
                 SharedPreferences.Editor mAsignar = mCodigo.edit();
-                mAsignar.putString("Codigo", CodigoSector);
+                mAsignar.putString("Codigo", String.valueOf(mposicion));
                 mAsignar.commit();
 
                 Intent mPantalla = null;
-                switch (posicion)
-                {
-                    case 0:
-                        mPantalla = new Intent(SectoresMedidoresActivity.this,MedidoresActivity.class);
-                        break;
-                    default:
-                        mPantalla = new Intent(SectoresMedidoresActivity.this,MedidoresActivity.class);
-                        break;
-                }
+
+                mPantalla = new Intent(SectoresMedidoresActivity.this,MedidoresActivity.class);
+
+
+
                 startActivity(mPantalla);
             }
         });

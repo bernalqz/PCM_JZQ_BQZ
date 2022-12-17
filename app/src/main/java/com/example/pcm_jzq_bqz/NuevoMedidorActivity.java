@@ -48,7 +48,7 @@ public class NuevoMedidorActivity extends AppCompatActivity {
     public void onResume()
     {
         super.onResume();
-        fn_CargarSharePreferences();
+
     }
     //----------------------------------------------------------------------------------------------
     private void fn_Inicializar()

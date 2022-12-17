@@ -50,16 +50,13 @@ public class SectoresActivity extends AppCompatActivity {
         mlstListaSectores.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int indice, long l) {
-                mposicion = indice;
+
                 cSector mSector = new cSector();
                 mSector = mServicio.fn_BuscarSectorPorNombre(mlstListaSectores.getItemAtPosition(indice).toString());
+                mposicion = mSector.getCodigoSector();
                         Toast.makeText(SectoresActivity.this, "Sector:" +
-                                mSector.getNombre(), Toast.LENGTH_SHORT).show();
-
-                        Toast.makeText(SectoresActivity.this,"Sector: " +mlstListaSectores.getItemAtPosition(indice).toString() + " seleccionado" ,Toast.LENGTH_SHORT).show();
-
-            }
-        });
+                                mSector.getNombre()+ "seleccionado", Toast.LENGTH_SHORT).show();
+       }});
     }
     //----------------------------------------------------------------------------------------------
     private void fn_CargarListaSectores()
@@ -67,6 +64,7 @@ public class SectoresActivity extends AppCompatActivity {
         mListaSectores = mServicio.fn_ListaSectores();
         cSectorAdaptador mSectorAdaptador = new cSectorAdaptador(this,mListaSectores,R.layout.adaptador_sectores);
         mlstListaSectores.setAdapter(mSectorAdaptador);
+        mposicion=-1;
     }
     //----------------------------------------------------------------------------------------------
     public void fn_Regresar(View view)
@@ -83,8 +81,8 @@ public class SectoresActivity extends AppCompatActivity {
     public void fn_EditarSectorActivity(View view) {
         if (mposicion != -1) {
             Intent mEditarSector = new Intent(SectoresActivity.this, EditarSectorActivity.class);
-            cSector mSector = mListaSectores.get(mposicion);
-            mEditarSector.putExtra("CodigoSector", mSector.getCodigoSector());
+
+            mEditarSector.putExtra("CodigoSector", mposicion);
             startActivity(mEditarSector);
         } else {
             Toast.makeText(SectoresActivity.this, "Debe de seleccionar un Sector",
@@ -95,19 +93,10 @@ public class SectoresActivity extends AppCompatActivity {
     public void BorrarSector(View v)
     {
         if (mposicion != -1) {
-
-            cSector mSector = mListaSectores.get(mposicion);
-            if(mSector != null)
-            {
-                mServicio.fn_EliminarSector(mSector.getCodigoSector());
+                mServicio.fn_EliminarSector(mposicion);
                 fn_CargarListaSectores();
                 Toast.makeText(this, "Sector eliminado", Toast.LENGTH_SHORT).show();
                 fn_CargarListaSectores();
-            }
-            else
-            {
-                Toast.makeText(this, "Sector inexistente", Toast.LENGTH_SHORT).show();
-            }
         }
         else
         {

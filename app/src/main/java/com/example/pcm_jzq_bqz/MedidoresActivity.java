@@ -48,7 +48,6 @@ public class MedidoresActivity extends AppCompatActivity {
     {
         super.onResume();
         //
-
         fn_CargarListaMedidores();
         fn_CargarMedidorSeleccionado();
         //
@@ -61,6 +60,7 @@ public class MedidoresActivity extends AppCompatActivity {
         cMedidoresAdaptador mAdaptador = new cMedidoresAdaptador(MedidoresActivity.this,
                 mListaMedidores, R.layout.adaptador_medidores);
         mlstListaMedidores.setAdapter(mAdaptador);
+        mposicion = -1;
     }
     //----------------------------------------------------------------------------------------------
     public void fn_Regresar(View view)
@@ -77,8 +77,8 @@ public class MedidoresActivity extends AppCompatActivity {
     public void frmIrEditarMedidor(View v) {
         if (mposicion != -1) {
             Intent mEditarMedidor = new Intent(MedidoresActivity.this, EditarMedidorActivity.class);
-            cMedidor mMedidor = mListaMedidores.get(mposicion);
-            mEditarMedidor.putExtra("CodigoMedidor", mMedidor.getSecuencia());
+
+            mEditarMedidor.putExtra("CodigoMedidor", mposicion);
 
             startActivity(mEditarMedidor);
         } else {
@@ -98,8 +98,8 @@ public class MedidoresActivity extends AppCompatActivity {
     //----------------------------------------------------------------------------------------------
     public void fn_BorrarMedidor(View v) {
         if (mposicion != -1) {
-            cMedidor mMedidor = mListaMedidores.get(mposicion);
-            mServicio.fn_EliminarMedidor(mMedidor.getCodigoMedidor());
+
+            mServicio.fn_EliminarMedidor(mposicion);
 
             Toast.makeText(this, "Medidor eliminado", Toast.LENGTH_SHORT).show();
             fn_CargarListaMedidores();
@@ -117,11 +117,10 @@ public class MedidoresActivity extends AppCompatActivity {
         mlstListaMedidores.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int posicion, long l) {
-                mposicion = posicion;
+
                 cMedidor mMedidor = new cMedidor();
-
                 mMedidor = mServicio.buscarMedidorXNombre(mlstListaMedidores.getItemAtPosition(posicion).toString());
-
+                mposicion = mMedidor.getSecuencia();
                 Toast.makeText(MedidoresActivity.this,"Cliente: " +mlstListaMedidores.getItemAtPosition(posicion).toString() + " seleccionado" ,Toast.LENGTH_SHORT).show();
 
             }

@@ -37,7 +37,7 @@ public class MedidoresActivity extends AppCompatActivity {
         setContentView(R.layout.activity_medidores);
     //
         mlstListaMedidores = findViewById(R.id.lstListaMedidores);
-        mposicion = -1;
+
         fn_CargarListaMedidores();
         fn_CargarMedidorSeleccionado();
     //
@@ -48,7 +48,7 @@ public class MedidoresActivity extends AppCompatActivity {
     {
         super.onResume();
         //
-        mposicion = -1;
+
         fn_CargarListaMedidores();
         fn_CargarMedidorSeleccionado();
         //
@@ -96,23 +96,24 @@ public class MedidoresActivity extends AppCompatActivity {
         return mCodigo01;
     }
     //----------------------------------------------------------------------------------------------
-    public void fn_BorrarMedidor(View v)
-    {
-        if (mposicion!= -1) {
+    public void fn_BorrarMedidor(View v) {
+        if (mposicion != -1) {
             cMedidor mMedidor = mListaMedidores.get(mposicion);
             mServicio.fn_EliminarMedidor(mMedidor.getCodigoMedidor());
-            fn_CargarListaMedidores();
+
             Toast.makeText(this, "Medidor eliminado", Toast.LENGTH_SHORT).show();
-        }
-        else
-        {
+            fn_CargarListaMedidores();
+
+        } else {
             Toast.makeText(MedidoresActivity.this, "Debe de seleccionar un Medidor",
                     Toast.LENGTH_SHORT).show();
         }
     }
+
     //----------------------------------------------------------------------------------------------
     private void fn_CargarMedidorSeleccionado()
     {
+
         mlstListaMedidores.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int posicion, long l) {
@@ -124,6 +125,7 @@ public class MedidoresActivity extends AppCompatActivity {
             }
         });
     }
+
     //----------------------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------------------------
 }

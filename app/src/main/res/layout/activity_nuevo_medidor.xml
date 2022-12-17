@@ -136,7 +136,7 @@
                 android:text="Agregar" />
 
             <Button
-                android:id="@+id/btnRegresar"
+                android:id="@+id/btnEliminar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:insetLeft="5dp"

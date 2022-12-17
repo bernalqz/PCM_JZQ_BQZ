@@ -66,6 +66,14 @@ public class EditarMedidorActivity extends AppCompatActivity {
         this.finish();
     }
     //----------------------------------------------------------------------------------------------
+    public void BorrarMedidor(View v)
+    {
+        mServicioMedidor.fn_EliminarMedidor(mCodigoMedidor);
+        finish();
+    }
+
+
+    //----------------------------------------------------------------------------------------------
     private void LeerPutExtra() {
         Bundle mBundle = getIntent().getExtras();
         if (mBundle != null) {

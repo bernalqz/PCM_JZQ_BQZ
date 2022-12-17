@@ -153,14 +153,21 @@
                 android:text="Editar" />
 
             <Button
-                android:id="@+id/btnRegresar"
+                android:id="@+id/btnEliminar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:insetLeft="5dp"
                 android:insetRight="5dp"
-                android:onClick="fn_Regresar"
-                android:text="Regresar" />
+                android:onClick="BorrarMedidor"
+                android:text="Eliminar" />
         </LinearLayout>
+
+        <Button
+            android:id="@+id/btnRegresar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="fn_Regresar"
+            android:text="Regresar" />
 
 
     </LinearLayout>

@@ -24,7 +24,7 @@ public class SectoresActivity extends AppCompatActivity {
     cSectorServicio mServicio = new cSectorServicio(Realm.getDefaultInstance());
     List<cSector> mListaSectores;
     ListView mlstListaSectores;
-    int mposicion;
+    int mposicion=-1;
     //----------------------------------------------------------------------------------------------
     @Override
     protected void onCreate(Bundle savedInstanceState) {

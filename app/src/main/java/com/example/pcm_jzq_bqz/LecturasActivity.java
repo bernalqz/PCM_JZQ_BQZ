@@ -104,16 +104,18 @@ public class LecturasActivity extends AppCompatActivity {
         {
             Toast.makeText(this, "Error al registrar", Toast.LENGTH_SHORT).show();
         }
+        mLecturaAnterior.setText("Lectura anterior: " + mLectura.getText().toString());
         fn_Inicializar();
     }
 
 // -------------------------------------------------------------------------------------------------
     public void fn_Siguiente(View view)
     {
-        i++;
 
-        if(i < mListaMedidores.size())
+
+        if(i < mListaMedidores.size()-1)
         {
+            i++;
             mMedidorObjeto = mListaMedidores.get(i);
             mSector.setText("Sector: " + mSectorObjeto.getNombre());
             mCodigoMedidor.setText("Código de medidor: " + String.valueOf(mMedidorObjeto.getCodigoMedidor()));

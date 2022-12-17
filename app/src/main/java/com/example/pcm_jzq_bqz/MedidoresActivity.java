@@ -120,11 +120,17 @@ public class MedidoresActivity extends AppCompatActivity {
                 mposicion = posicion;
                 cMedidor mMedidor = new cMedidor();
                 mMedidor = mServicio.fn_BuscarMedidorPorCodigo(posicion+1);
-                Toast.makeText(MedidoresActivity.this, "Sector " + mMedidor.getNombreCliente() + " seleccionado" ,
-                        Toast.LENGTH_SHORT).show();
+
+               // Toast.makeText(MedidoresActivity.this, "Sector " + mMedidor.getNombreCliente() + " seleccionado" ,
+               //         Toast.LENGTH_SHORT).show();
+                Toast.makeText(MedidoresActivity.this,mlstListaMedidores.getItemAtPosition(posicion).toString(),Toast.LENGTH_SHORT).show();
+
             }
         });
     }
+
+
+
 
     //----------------------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------------------------

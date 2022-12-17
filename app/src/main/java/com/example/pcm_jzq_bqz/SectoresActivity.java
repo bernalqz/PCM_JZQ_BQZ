@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.pcm_jzq_bqz.Clases.cMedidor;
 import com.example.pcm_jzq_bqz.Clases.cSector;
 import com.example.pcm_jzq_bqz.Clases.cSectorAdaptador;
 import com.example.pcm_jzq_bqz.Clases.cSectorServicio;
@@ -50,15 +51,11 @@ public class SectoresActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int indice, long l) {
                 mposicion = indice;
-
-                switch(mposicion)
-                {
-                    default:
-                        cSector mSector = mListaSectores.get(mposicion);
+                cSector mSector = new cSector();
+                mSector = mServicio.fn_BuscarSectorPorCodigo(indice+1);
                         Toast.makeText(SectoresActivity.this, "Sector:" +
                                 mSector.getNombre(), Toast.LENGTH_SHORT).show();
-                        break;
-                }
+
             }
         });
     }

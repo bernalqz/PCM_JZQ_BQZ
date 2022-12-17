@@ -66,11 +66,11 @@ public class NuevoMedidorActivity extends AppCompatActivity {
     public void fn_AgregarMedidor(View v)
     {
 
-            if(mCliente.getText().equals(""))
-            {
-                Toast.makeText(this, "Agregue un nombre del ciente",
+        if((mCliente.getText().equals(null)) || (mCliente.getText().toString().trim().equals("")))
+        {
+                Toast.makeText(this, "Debe agregar el nombre del ciente",
                         Toast.LENGTH_SHORT).show();
-            }
+        }
             else
             {
                 String mEstado="";

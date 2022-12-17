@@ -85,7 +85,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="32dp"
             android:ems="10"
-            android:hint="Lectura de Medidor"
+            android:hint="Agregue la lectura aquí"
             android:inputType="number"
             android:textAlignment="center" />
 

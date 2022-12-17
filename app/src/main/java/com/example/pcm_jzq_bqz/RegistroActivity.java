@@ -48,28 +48,30 @@ public class RegistroActivity extends AppCompatActivity {
     //----------------------------------------------------------------------------------------------
     public void fn_RegistrarUsuario(View view)
     {
-       if(mContrasena.getText().toString().trim().equals(mVerificacion.getText().toString().trim()))
-       {
-           int Edad = Integer.parseInt(mEdad.getText().toString().trim());
-           if(Edad >= 18)
-           {
-                cUsuarioServicio mServicio = new cUsuarioServicio(Realm.getDefaultInstance());
-                mServicio.fn_AgregarUsuario(mNombre.getText().toString(), mCorreo.getText().toString(),
-                        mContrasena.getText().toString(), mTelefono.getText().toString(), Edad);
-                fn_Inicializar();
-               Toast.makeText(this, "Usuario Agregado", Toast.LENGTH_SHORT).show();
-           }
-           else
-           {
-               Toast.makeText(this, "Edad no permitida", Toast.LENGTH_SHORT).show();
-               Toast.makeText(this, "Usuario no agregado", Toast.LENGTH_SHORT).show();
-           }
-       }
-       else
-       {
-           Toast.makeText(this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
-           Toast.makeText(this, "Revise los Datos Introducidos", Toast.LENGTH_SHORT).show();
-       }
+
+        if((mNombre.getText().equals(null)) || (mNombre.getText().toString().trim().equals("")))
+        {
+            Toast.makeText(this, "Debe agregar un nombre", Toast.LENGTH_SHORT).show();
+        }
+        else {
+
+            if (mContrasena.getText().toString().trim().equals(mVerificacion.getText().toString().trim())) {
+                int Edad = Integer.parseInt(mEdad.getText().toString().trim());
+                if (Edad >= 18) {
+                    cUsuarioServicio mServicio = new cUsuarioServicio(Realm.getDefaultInstance());
+                    mServicio.fn_AgregarUsuario(mNombre.getText().toString(), mCorreo.getText().toString(),
+                            mContrasena.getText().toString(), mTelefono.getText().toString(), Edad);
+                    fn_Inicializar();
+                    Toast.makeText(this, "Usuario Agregado", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, "Edad no permitida", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Usuario no agregado", Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                Toast.makeText(this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Revise los Datos Introducidos", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
     //----------------------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------------------------

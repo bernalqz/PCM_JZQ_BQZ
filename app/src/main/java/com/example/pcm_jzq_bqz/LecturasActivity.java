@@ -92,21 +92,29 @@ public class LecturasActivity extends AppCompatActivity {
     // ---------------------------------------------------------------------------------------------
     public void fn_RegistrarLectura(View view)
     {
-        try
+
+        if((mLectura.getText().equals(null)) || (mLectura.getText().toString().trim().equals("")))
+
         {
-            int _Lectura = Integer.parseInt(mLectura.getText().toString());
-            mMedidorObjeto = mListaMedidores.get(i);
-            mServicioMedidor.fn_RegistrarLectura(mMedidorObjeto.getCodigoMedidor(),
-                    mFecha.getText().toString(), _Lectura);
-            Toast.makeText(this, "Registro correcto", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Debe agregar un valor en la lectura",
+                    Toast.LENGTH_SHORT).show();
         }
-        catch(Exception e)
-        {
-            Toast.makeText(this, "Error al registrar", Toast.LENGTH_SHORT).show();
-        }
-        mLecturaAnterior.setText("Lectura anterior: " + mLectura.getText().toString());
-        fn_Inicializar();
-    }
+        else {
+
+
+            try {
+                int _Lectura = Integer.parseInt(mLectura.getText().toString());
+                mMedidorObjeto = mListaMedidores.get(i);
+                mServicioMedidor.fn_RegistrarLectura(mMedidorObjeto.getCodigoMedidor(),
+                        mFecha.getText().toString(), _Lectura);
+                Toast.makeText(this, "Registro correcto", Toast.LENGTH_SHORT).show();
+            } catch (Exception e) {
+                Toast.makeText(this, "Error al registrar", Toast.LENGTH_SHORT).show();
+            }
+            mLecturaAnterior.setText("Lectura anterior: " + mLectura.getText().toString());
+            fn_Inicializar();
+        }}
+
 
 // -------------------------------------------------------------------------------------------------
     public void fn_Siguiente(View view)

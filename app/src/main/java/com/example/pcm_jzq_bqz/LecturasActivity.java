@@ -104,6 +104,7 @@ public class LecturasActivity extends AppCompatActivity {
         {
             Toast.makeText(this, "Error al registrar", Toast.LENGTH_SHORT).show();
         }
+        fn_Inicializar();
     }
 
 // -------------------------------------------------------------------------------------------------
@@ -123,10 +124,12 @@ public class LecturasActivity extends AppCompatActivity {
         {
             Toast.makeText(this, "No hay más elementos", Toast.LENGTH_SHORT).show();
         }
+        fn_Inicializar();
     }
 
     // ---------------------------------------------------------------------------------------------
     public void fn_Anterior(View view)
+
     {
         if(i > 0)
         {
@@ -143,7 +146,14 @@ public class LecturasActivity extends AppCompatActivity {
         {
             Toast.makeText(this, "Este es el primer elemento", Toast.LENGTH_SHORT).show();
         }
+
+        fn_Inicializar();
     }
     //----------------------------------------------------------------------------------------------
+    private void fn_Inicializar()
+    {
+        mLectura.setText("");
+
+    }
 //--------------------------------------------------------------------------------------------------
 }

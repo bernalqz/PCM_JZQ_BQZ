@@ -11,8 +11,13 @@ import android.widget.Toast;
 
 import com.example.pcm_jzq_bqz.Clases.cMedidor;
 import com.example.pcm_jzq_bqz.Clases.cMedidorServicio;
+import com.example.pcm_jzq_bqz.Clases.cSector;
+import com.example.pcm_jzq_bqz.Clases.cSectorServicio;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 import io.realm.Realm;
 
@@ -21,10 +26,14 @@ public class EditarMedidorActivity extends AppCompatActivity {
     //------------------------------------- VARIABLES GLOBALES -------------------------------------
     cMedidor mMedidor;
     cMedidorServicio mServicioMedidor = new cMedidorServicio(Realm.getDefaultInstance());
-    EditText mNombre, mNumeroMedidor, mLectura, mSector;
-    TextView mFecha;
+
+    //cSector moSector;
+    //cSectorServicio mServicioSector = new cSectorServicio(Realm.getDefaultInstance());
+
+    EditText mNombre;
+    TextView mFecha,mSector,mNumeroMedidor, mLectura, mNombreSector;
     String mEstado;
-    int Dia, Mes, Year, mCodigoMedidor;
+    int Dia, Mes, Year, mCodigoMedidor,sector;
     RadioButton mActivo, mInactivo;
     //----------------------------------------------------------------------------------------------
     @Override
@@ -33,12 +42,15 @@ public class EditarMedidorActivity extends AppCompatActivity {
         setContentView(R.layout.activity_editar_medidor);
 
         //
-        mSector = findViewById(R.id.txteMedidorSector);
+        mSector = findViewById(R.id.tvSectorMedidor);
+        //mNombreSector = findViewById(R.id.tvNombreSectorMedidor);
         mNombre = findViewById(R.id.txteMedidorDuenio);
-        mNumeroMedidor = findViewById(R.id.txteMedidorNumero);
-        mLectura = findViewById(R.id.txteMedidorLectura);
+        mNumeroMedidor = findViewById(R.id.tvNumeroMedidor);
+        mLectura = findViewById(R.id.tvLecturaMedidor);
         mActivo = findViewById(R.id.rbeMedidorActivo);
         mInactivo = findViewById(R.id.rbeMedidorInactivo);
+        mFecha = findViewById(R.id.tveFecha);
+        mFecha.setText(getFecha());
         LeerPutExtra();
         //
     }
@@ -60,10 +72,14 @@ public class EditarMedidorActivity extends AppCompatActivity {
             mCodigoMedidor = mBundle.getInt("CodigoMedidor", 0);
             mMedidor = mServicioMedidor.fn_BuscarMedidorPorCodigo(mCodigoMedidor);
             //Cargar Datos//
-            mNumeroMedidor.setText(Integer.toString(mMedidor.getCodigoMedidor()));
-            mSector.setText(Integer.toString(mMedidor.getCodigoSector()));
+
+            mSector.setText("Sector: "+mMedidor.getCodigoSector());
+
+            //moSector=mServicioSector.fn_BuscarSectorPorCodigo(mSector);
+            //mNombreSector.setText("Sector: "+moSector.getNombre().toString());
             mNombre.setText(mMedidor.getNombreCliente());
-            mLectura.setText(Integer.toString(mMedidor.getLectura()));
+            mNumeroMedidor.setText("Numero de Medidor: "+Integer.toString(mMedidor.getCodigoMedidor()));
+            mLectura.setText("Lectura Actual: "+Integer.toString(mMedidor.getLectura()));
             mEstado = mMedidor.getEstado().toString();
 
             if (mEstado.trim().equals("Activo")) {
@@ -79,8 +95,7 @@ public class EditarMedidorActivity extends AppCompatActivity {
     {
         try
         {
-            mServicioMedidor.fn_ActualizarMedidor(mCodigoMedidor,mNombre.getText().toString(),
-                    Integer.parseInt(mLectura.getText().toString()),mEstado);
+            mServicioMedidor.fn_ActualizarMedidor(mCodigoMedidor,mNombre.getText().toString(),mEstado);
             Toast.makeText(this, "Editado: ", Toast.LENGTH_SHORT).show();
         }
         catch (Exception e)
@@ -89,14 +104,12 @@ public class EditarMedidorActivity extends AppCompatActivity {
         }
     }
     //----------------------------------------------------------------------------------------------
-    public String fn_ObtenerFecha()
+    private String getFecha()
     {
-        Calendar mFecha = Calendar.getInstance();
-        Dia = mFecha.get(Calendar.DAY_OF_MONTH);
-        Mes = mFecha.get(Calendar.MONTH);
-        Year = mFecha.get(Calendar.YEAR);
-        String mDate = Mes + "/" + Dia + "/" + Year;
-        return mDate;
+        Date c = Calendar.getInstance().getTime();
+        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy", Locale.getDefault());
+        String formattedDate = df.format(c);
+        return formattedDate.toString();
     }
     //----------------------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------------------------

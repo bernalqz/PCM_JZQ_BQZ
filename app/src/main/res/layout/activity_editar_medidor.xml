@@ -50,9 +50,10 @@
             tools:layout_editor_absoluteY="118dp" />
 
         <TextView
-            android:id="@+id/texteView6"
+            android:id="@+id/tvSectorMedidor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginVertical="10px"
             android:text="Sector:"
             android:textAlignment="center"
             android:textSize="16sp"
@@ -60,22 +61,12 @@
             tools:layout_editor_absoluteX="160dp"
             tools:layout_editor_absoluteY="161dp" />
 
-        <EditText
-            android:id="@+id/txteMedidorSector"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Pertence al sector:"
-            android:inputType="textPersonName"
-            android:textAlignment="center"
-            tools:layout_editor_absoluteX="83dp"
-            tools:layout_editor_absoluteY="198dp" />
-
         <TextView
-            android:id="@+id/texteView8"
+            android:id="@+id/tvNombreCliente"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Nombre del Cliente"
+            android:layout_marginTop="10px"
+            android:text="Nombre del Cliente:"
             android:textAlignment="center"
             android:textSize="16sp"
             android:textStyle="bold"
@@ -94,7 +85,7 @@
             tools:layout_editor_absoluteY="312dp" />
 
         <TextView
-            android:id="@+id/texteView2"
+            android:id="@+id/tvNumeroMedidor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Numero de Medidor"
@@ -104,21 +95,11 @@
             tools:layout_editor_absoluteX="160dp"
             tools:layout_editor_absoluteY="161dp" />
 
-        <EditText
-            android:id="@+id/txteMedidorNumero"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Numero de Medidor"
-            android:inputType="textPersonName"
-            android:textAlignment="center"
-            tools:layout_editor_absoluteX="100dp"
-            tools:layout_editor_absoluteY="312dp" />
-
         <TextView
-            android:id="@+id/texteView"
+            android:id="@+id/tvLecturaMedidor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginVertical="10px"
             android:text="Lectura"
             android:textAlignment="center"
             android:textSize="16sp"
@@ -126,31 +107,23 @@
             tools:layout_editor_absoluteX="160dp"
             tools:layout_editor_absoluteY="161dp" />
 
-        <EditText
-            android:id="@+id/txteMedidorLectura"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Lectura"
-            android:inputType="textPersonName"
-            android:textAlignment="center"
-            tools:layout_editor_absoluteX="100dp"
-            tools:layout_editor_absoluteY="312dp" />
-
         <TextView
             android:id="@+id/texteView11"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginVertical="20px"
             android:text="Estado"
             android:textAlignment="center"
-            android:textSize="16sp"
+            android:textSize="19sp"
             android:textStyle="bold"
             tools:layout_editor_absoluteX="160dp"
             tools:layout_editor_absoluteY="161dp" />
 
         <RadioGroup
-            android:layout_width="match_parent"
-            android:layout_height="104dp">
+            android:layout_width="400px"
+            android:layout_height="104dp"
+            android:layout_marginLeft="400px"
+            android:textAlignment="center">
 
             <RadioButton
                 android:id="@+id/rbeMedidorActivo"

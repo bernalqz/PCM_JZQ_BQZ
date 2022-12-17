@@ -41,6 +41,8 @@ public class cSectorServicio {
         cSector mSector = mRealm.where(cSector.class).equalTo("CodigoSector",_Codigo).findFirst();
         return mSector;
     }
+
+
     //----------------------------------------------------------------------------------------------
     public boolean fn_AgregarSector(String _Nombre, String _Canton)
     {

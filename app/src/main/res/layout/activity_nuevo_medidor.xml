@@ -50,7 +50,7 @@
             tools:layout_editor_absoluteY="118dp" />
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/tvSectorMedidorN2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Sector:"
@@ -60,16 +60,16 @@
             tools:layout_editor_absoluteX="160dp"
             tools:layout_editor_absoluteY="161dp" />
 
-        <EditText
-            android:id="@+id/txtMedidorSector"
+        <TextView
+            android:id="@+id/tvSectorMedidorN"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Pertence al sector:"
-            android:inputType="textPersonName"
+            android:text="Valor Sector"
             android:textAlignment="center"
-            tools:layout_editor_absoluteX="83dp"
-            tools:layout_editor_absoluteY="198dp" />
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="160dp"
+            tools:layout_editor_absoluteY="161dp" />
 
         <TextView
             android:id="@+id/textView8"

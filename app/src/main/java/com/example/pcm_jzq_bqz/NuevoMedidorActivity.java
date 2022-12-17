@@ -23,8 +23,8 @@ import io.realm.Realm;
 public class NuevoMedidorActivity extends AppCompatActivity {
 
     //-------------------------------- VARIABLES GLOBALES ------------------------------------------
-    EditText mSector, mCliente;
-    TextView mFecha;
+    EditText  mCliente;
+    TextView mFecha,mSector;
     RadioButton mActivo, mInactivo;
     //----------------------------------------------------------------------------------------------
     @Override
@@ -33,7 +33,7 @@ public class NuevoMedidorActivity extends AppCompatActivity {
         setContentView(R.layout.activity_nuevo_medidor);
 
         //
-        mSector = findViewById(R.id.txtMedidorSector);
+        mSector = findViewById(R.id.tvSectorMedidorN);
         mCliente = findViewById(R.id.txteMedidorDuenio);
         mActivo = findViewById(R.id.rbeMedidorActivo);
         mInactivo = findViewById(R.id.rbeMedidorInactivo);
@@ -63,17 +63,12 @@ public class NuevoMedidorActivity extends AppCompatActivity {
         this.finish();
     }
     //----------------------------------------------------------------------------------------------
-    public void fn_AgregarMedidor(View view)
+    public void fn_AgregarMedidor(View v)
     {
-        if(mSector.getText().equals(""))
-        {
-            Toast.makeText(this, "Agregue un codigo de sector", Toast.LENGTH_SHORT).show();
-        }
-        else
-        {
+
             if(mCliente.getText().equals(""))
             {
-                Toast.makeText(this, "Agregue un codigo de sector y nombre del ciente",
+                Toast.makeText(this, "Agregue un nombre del ciente",
                         Toast.LENGTH_SHORT).show();
             }
             else
@@ -102,7 +97,7 @@ public class NuevoMedidorActivity extends AppCompatActivity {
                     Toast.makeText(this, "Error al agregar", Toast.LENGTH_SHORT).show();
                 }
             }
-        }
+
     }
     //----------------------------------------------------------------------------------------------
     private void fn_CargarSharePreferences()

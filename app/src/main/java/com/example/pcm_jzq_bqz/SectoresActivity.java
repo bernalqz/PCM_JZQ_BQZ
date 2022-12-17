@@ -56,8 +56,7 @@ public class SectoresActivity extends AppCompatActivity {
                         Toast.makeText(SectoresActivity.this, "Sector:" +
                                 mSector.getNombre(), Toast.LENGTH_SHORT).show();
 
-
-                Toast.makeText(SectoresActivity.this,"Cliente: " +mlstListaSectores.getItemAtPosition(indice).toString() + " seleccionado" ,Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SectoresActivity.this,"Sector: " +mlstListaSectores.getItemAtPosition(indice).toString() + " seleccionado" ,Toast.LENGTH_SHORT).show();
 
             }
         });

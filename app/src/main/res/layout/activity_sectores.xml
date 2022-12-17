@@ -87,16 +87,6 @@
                     android:orientation="horizontal">
 
                     <Button
-                        android:id="@+id/btnSectoresActivityEliminar"
-                        android:layout_width="150dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:insetLeft="5dp"
-                        android:insetRight="5dp"
-                        android:onClick="BorrarSector"
-                        android:text="Eliminar" />
-
-                    <Button
                         android:id="@+id/btnSectoresActivityRegresar"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"

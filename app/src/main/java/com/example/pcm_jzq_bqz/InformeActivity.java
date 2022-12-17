@@ -65,7 +65,8 @@ public class InformeActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int posicion, long l) {
 
                 Intent mEditarMedidor = new Intent(InformeActivity.this, EditarMedidorActivity.class);
-                cMedidor mMedidor = mListaMedidores.get(posicion);
+                cMedidor mMedidor = new cMedidor(); //add
+                mMedidor = mServicio.buscarMedidorXNombre(mlstListaMedidores.getItemAtPosition(posicion).toString());
                 mEditarMedidor.putExtra("CodigoMedidor", mMedidor.getSecuencia());
                 startActivity(mEditarMedidor);
             }

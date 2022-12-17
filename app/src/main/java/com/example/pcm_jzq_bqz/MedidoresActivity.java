@@ -119,11 +119,10 @@ public class MedidoresActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int posicion, long l) {
                 mposicion = posicion;
                 cMedidor mMedidor = new cMedidor();
-                mMedidor = mServicio.fn_BuscarMedidorPorCodigo(posicion+1);
 
-               // Toast.makeText(MedidoresActivity.this, "Sector " + mMedidor.getNombreCliente() + " seleccionado" ,
-               //         Toast.LENGTH_SHORT).show();
-                Toast.makeText(MedidoresActivity.this,mlstListaMedidores.getItemAtPosition(posicion).toString(),Toast.LENGTH_SHORT).show();
+                mMedidor = mServicio.buscarMedidorXNombre(mlstListaMedidores.getItemAtPosition(posicion).toString());
+
+                Toast.makeText(MedidoresActivity.this,"Cliente: " +mlstListaMedidores.getItemAtPosition(posicion).toString() + " seleccionado" ,Toast.LENGTH_SHORT).show();
 
             }
         });

@@ -52,9 +52,12 @@ public class SectoresActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int indice, long l) {
                 mposicion = indice;
                 cSector mSector = new cSector();
-                mSector = mServicio.fn_BuscarSectorPorCodigo(indice+1);
+                mSector = mServicio.fn_BuscarSectorPorNombre(mlstListaSectores.getItemAtPosition(indice).toString());
                         Toast.makeText(SectoresActivity.this, "Sector:" +
                                 mSector.getNombre(), Toast.LENGTH_SHORT).show();
+
+
+                Toast.makeText(SectoresActivity.this,"Cliente: " +mlstListaSectores.getItemAtPosition(indice).toString() + " seleccionado" ,Toast.LENGTH_SHORT).show();
 
             }
         });

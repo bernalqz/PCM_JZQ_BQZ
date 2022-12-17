@@ -36,6 +36,13 @@ public class cSectorServicio {
         return mCodigoNuevo;
     }
     //----------------------------------------------------------------------------------------------
+    public cSector fn_BuscarSectorPorNombre(String _Nombre)
+    {
+        cSector mSector = mRealm.where(cSector.class).equalTo("Nombre",_Nombre).findFirst();
+        return mSector;
+    }
+
+    //----------------------------------------------------------------------------------------------
     public cSector fn_BuscarSectorPorCodigo(int _Codigo)
     {
         cSector mSector = mRealm.where(cSector.class).equalTo("CodigoSector",_Codigo).findFirst();

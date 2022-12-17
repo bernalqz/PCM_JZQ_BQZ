@@ -24,7 +24,7 @@ public class SectoresActivity extends AppCompatActivity {
     cSectorServicio mServicio = new cSectorServicio(Realm.getDefaultInstance());
     List<cSector> mListaSectores;
     ListView mlstListaSectores;
-    int mposicion = -1;
+    int mposicion;
     //----------------------------------------------------------------------------------------------
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,12 +48,17 @@ public class SectoresActivity extends AppCompatActivity {
     {
         mlstListaSectores.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int posicion, long l) {
-                mposicion = posicion;
-                cSector mSector = new cSector();
-                mSector = mServicio.fn_BuscarSectorPorCodigo(posicion+1);
-                Toast.makeText(SectoresActivity.this, "Sector " + mSector.getNombre() +
-                        " seleccionado" , Toast.LENGTH_SHORT).show();
+            public void onItemClick(AdapterView<?> adapterView, View view, int indice, long l) {
+                mposicion = indice;
+
+                switch(mposicion)
+                {
+                    default:
+                        cSector mSector = mListaSectores.get(mposicion);
+                        Toast.makeText(SectoresActivity.this, "Sector:" +
+                                mSector.getNombre(), Toast.LENGTH_SHORT).show();
+                        break;
+                }
             }
         });
     }
@@ -63,7 +68,6 @@ public class SectoresActivity extends AppCompatActivity {
         mListaSectores = mServicio.fn_ListaSectores();
         cSectorAdaptador mSectorAdaptador = new cSectorAdaptador(this,mListaSectores,R.layout.adaptador_sectores);
         mlstListaSectores.setAdapter(mSectorAdaptador);
-        mposicion = -1;
     }
     //----------------------------------------------------------------------------------------------
     public void fn_Regresar(View view)
@@ -91,11 +95,20 @@ public class SectoresActivity extends AppCompatActivity {
     //----------------------------------------------------------------------------------------------
     public void BorrarSector(View v)
     {
-        if (mposicion!= -1) {
+        if (mposicion != -1) {
+
             cSector mSector = mListaSectores.get(mposicion);
-            mServicio.fn_EliminarSector(mSector.getCodigoSector());
-            fn_CargarListaSectores();
-            Toast.makeText(this, "Sector eliminado", Toast.LENGTH_SHORT).show();
+            if(mSector != null)
+            {
+                mServicio.fn_EliminarSector(mSector.getCodigoSector());
+                fn_CargarListaSectores();
+                Toast.makeText(this, "Sector eliminado", Toast.LENGTH_SHORT).show();
+                fn_CargarListaSectores();
+            }
+            else
+            {
+                Toast.makeText(this, "Sector inexistente", Toast.LENGTH_SHORT).show();
+            }
         }
         else
         {

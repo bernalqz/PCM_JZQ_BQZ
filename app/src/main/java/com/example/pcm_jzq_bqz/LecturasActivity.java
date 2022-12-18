@@ -76,8 +76,6 @@ public class LecturasActivity extends AppCompatActivity {
         } catch (Exception e) {
             Toast.makeText(this, "El Sector no tiene medidores", Toast.LENGTH_SHORT).show();
 
-            Intent mPantalla = new Intent(this, SectoresMedidoresActivity.class);
-            startActivity(mPantalla);
         }
 
     }

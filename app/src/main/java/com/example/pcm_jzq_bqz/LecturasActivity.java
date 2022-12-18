@@ -3,6 +3,7 @@ package com.example.pcm_jzq_bqz;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -63,15 +64,21 @@ public class LecturasActivity extends AppCompatActivity {
         SharedPreferences mCodigo = getSharedPreferences("CodigoSector", Context.MODE_PRIVATE);
         String mCodigoObtenido = mCodigo.getString("Codigo", "Sector nulo");
         int _CodigoSector = Integer.parseInt(mCodigoObtenido);
+        try {
+            mListaMedidores = mServicioMedidor.fn_CargarListaMedidores(_CodigoSector);
+            mMedidorObjeto = mListaMedidores.get(i);
+            mSectorObjeto = mServicioSector.fn_BuscarSectorPorCodigo(_CodigoSector);
 
-        mListaMedidores = mServicioMedidor.fn_CargarListaMedidores(_CodigoSector);
-        mMedidorObjeto = mListaMedidores.get(i);
-        mSectorObjeto = mServicioSector.fn_BuscarSectorPorCodigo(_CodigoSector);
+            mSector.setText("Sector: " + mSectorObjeto.getNombre());
+            mNombreCliente.setText("Nombre de cliente: " + mMedidorObjeto.getNombreCliente());
+            mCodigoMedidor.setText("Código de medidor: " + String.valueOf(mMedidorObjeto.getCodigoMedidor()));
+            mLecturaAnterior.setText("Lectura anterior: " + String.valueOf(mMedidorObjeto.getLectura()));
+        } catch (Exception e) {
+            Toast.makeText(this, "El Sector no tiene medidores", Toast.LENGTH_SHORT).show();
 
-        mSector.setText("Sector: " + mSectorObjeto.getNombre());
-        mNombreCliente.setText("Nombre de cliente: " + mMedidorObjeto.getNombreCliente());
-        mCodigoMedidor.setText("Código de medidor: " + String.valueOf(mMedidorObjeto.getCodigoMedidor()));
-        mLecturaAnterior.setText("Lectura anterior: " + String.valueOf(mMedidorObjeto.getLectura()));
+            Intent mPantalla = new Intent(this, SectoresMedidoresActivity.class);
+            startActivity(mPantalla);
+        }
 
     }
     //----------------------------------------------------------------------------------------------

@@ -25,6 +25,7 @@ public class LecturaMedidoresActivity extends AppCompatActivity {
     cSectorServicio mServicio = new cSectorServicio(Realm.getDefaultInstance());
     List<cSector> mListaSectores;
     ListView mlstListaSectores;
+    int mposicion;
     //----------------------------------------------------------------------------------------------
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,36 +53,41 @@ public class LecturaMedidoresActivity extends AppCompatActivity {
         mlstListaSectores.setAdapter(mAdaptador);
     }
     //----------------------------------------------------------------------------------------------
+
+
+    //----------------------------------------------------------------------------------------------
     private void fn_CargarSectorSeleccionado()
     {
         mlstListaSectores.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int posicion, long l) {
                 cSector mSector = new cSector();
-                mSector = mServicio.fn_BuscarSectorPorCodigo(posicion+1);
-                String CodigoSector = String.valueOf(mSector.getCodigoSector());
+                mSector = mServicio.fn_BuscarSectorPorNombre(mlstListaSectores.getItemAtPosition(posicion).toString());
+                mposicion = mSector.getCodigoSector();
+
                 String mMensaje = "Elemento seleccionado: " + mSector.getNombre();
+
                 Toast.makeText(LecturaMedidoresActivity.this, mMensaje, Toast.LENGTH_SHORT).show();
 
                 SharedPreferences mCodigo = getSharedPreferences("CodigoSector", Context.MODE_PRIVATE);
                 SharedPreferences.Editor mAsignar = mCodigo.edit();
-                mAsignar.putString("Codigo", CodigoSector);
+                mAsignar.putString("Codigo", String.valueOf(mposicion));
                 mAsignar.commit();
 
                 Intent mPantalla = null;
-                switch (posicion)
-                {
-                    case 0:
-                        mPantalla = new Intent(LecturaMedidoresActivity.this,LecturasActivity.class);
-                        break;
-                    default:
-                        mPantalla = new Intent(LecturaMedidoresActivity.this,LecturasActivity.class);
-                        break;
-                }
+
+                mPantalla = new Intent(LecturaMedidoresActivity.this,LecturasActivity.class);
+
+
+
                 startActivity(mPantalla);
             }
         });
     }
+    //----------------------------------------------------------------------------------------------
+
+
+
     //----------------------------------------------------------------------------------------------
     public void fn_Regresar(View view)
     {

@@ -31,7 +31,7 @@ public class EditarMedidorActivity extends AppCompatActivity {
     //cSectorServicio mServicioSector = new cSectorServicio(Realm.getDefaultInstance());
 
     EditText mNombre;
-    TextView mFecha,mSector,mNumeroMedidor, mLectura, mNombreSector;
+    TextView mFecha,mSector,mNumeroMedidor, mLectura,mFechaLectura, mNombreSector;
     String mEstado;
     int Dia, Mes, Year, mCodigoMedidor,sector;
     RadioButton mActivo, mInactivo;
@@ -47,6 +47,7 @@ public class EditarMedidorActivity extends AppCompatActivity {
         mNombre = findViewById(R.id.txteMedidorDuenio);
         mNumeroMedidor = findViewById(R.id.tvNumeroMedidor);
         mLectura = findViewById(R.id.tvLecturaMedidor);
+        mFechaLectura = findViewById(R.id.tvFechaLectura);
         mActivo = findViewById(R.id.rbeMedidorActivo);
         mInactivo = findViewById(R.id.rbeMedidorInactivo);
         mFecha = findViewById(R.id.tveFecha);
@@ -82,12 +83,10 @@ public class EditarMedidorActivity extends AppCompatActivity {
             //Cargar Datos//
 
             mSector.setText("Sector: "+mMedidor.getCodigoSector());
-
-            //moSector=mServicioSector.fn_BuscarSectorPorCodigo(mSector);
-            //mNombreSector.setText("Sector: "+moSector.getNombre().toString());
             mNombre.setText(mMedidor.getNombreCliente());
             mNumeroMedidor.setText("Numero de Medidor: "+Integer.toString(mMedidor.getCodigoMedidor()));
             mLectura.setText("Lectura Actual: "+Integer.toString(mMedidor.getLectura()));
+            mFechaLectura.setText("fecha ultima lectura: "+(mMedidor.getFechaLectura()));
             mEstado = mMedidor.getEstado().toString();
 
             if (mEstado.trim().equals("Activo")) {
